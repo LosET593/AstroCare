@@ -6,10 +6,10 @@
 <meta name="description" content="Juego de monitoreo de salud de astronautas. NASA Space Apps Challenge 2026.">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#070f17;--pn:#0f2233;--glass:rgba(16,38,56,.68);--tx:#E8F1F5;--mu:#8FA9B6;--ln:rgba(124,196,232,.2);--g:#4CD0A0;--y:#F2B63C;--r:#FF6B6B;--ac:#7CC4E8;--gb:rgba(76,208,160,.13);--yb:rgba(242,182,60,.13);--rb:rgba(255,107,107,.15)}
+:root{color-scheme:dark;--bg:#070f17;--pn:#0f2233;--glass:rgba(16,38,56,.78);--tx:#E8F1F5;--mu:#8FA9B6;--ln:rgba(124,196,232,.2);--g:#4CD0A0;--y:#F2B63C;--r:#FF6B6B;--ac:#7CC4E8;--gb:rgba(76,208,160,.13);--yb:rgba(242,182,60,.13);--rb:rgba(255,107,107,.15)}
 *{box-sizing:border-box}
-body{margin:0;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);min-height:100vh;color:var(--tx);font:16px/1.5 Barlow,system-ui,sans-serif;background:radial-gradient(900px 500px at 85% -5%,rgba(40,90,140,.38),transparent 70%),radial-gradient(800px 500px at 5% 105%,rgba(170,70,40,.26),transparent 70%),radial-gradient(1.2px 1.2px at 12% 18%,#fff9,transparent),radial-gradient(1px 1px at 34% 72%,#fff7,transparent),radial-gradient(1.4px 1.4px at 58% 30%,#fffa,transparent),radial-gradient(1px 1px at 79% 62%,#fff8,transparent),radial-gradient(1.2px 1.2px at 91% 14%,#fff9,transparent),radial-gradient(1px 1px at 46% 90%,#fff6,transparent),var(--bg);background-size:100% 100%,100% 100%,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px}
-#app{max-width:980px;margin:0 auto;padding:18px 16px 28px}
+body{margin:0;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);min-height:100vh;color:var(--tx);font:16px/1.5 Barlow,system-ui,sans-serif;background:radial-gradient(900px 500px at 85% -5%,rgba(40,90,140,.38),transparent 70%),radial-gradient(800px 500px at 5% 105%,rgba(170,70,40,.26),transparent 70%),radial-gradient(1.2px 1.2px at 12% 18%,#fff9,transparent),radial-gradient(1px 1px at 34% 72%,#fff7,transparent),radial-gradient(1.4px 1.4px at 58% 30%,#fffa,transparent),radial-gradient(1px 1px at 79% 62%,#fff8,transparent),radial-gradient(1.2px 1.2px at 91% 14%,#fff9,transparent),radial-gradient(1px 1px at 46% 90%,#fff6,transparent),var(--bg);background-size:100% 100%,100% 100%,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px;overflow-x:hidden}
+#app{max-width:980px;margin:0 auto;padding:18px 16px 28px;position:relative}
 h1,h2,.nm,.big{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:700}
 h1{font-size:clamp(2.3rem,7vw,3.3rem);line-height:1.02;margin:.1em 0 .15em;letter-spacing:.02em;background:linear-gradient(90deg,#fff,var(--ac) 55%,var(--y));-webkit-background-clip:text;background-clip:text;color:transparent}
 h2{font-size:1.25rem;margin:.2em 0 .3em;letter-spacing:.03em}p{margin:.4em 0;max-width:70ch}.mu{color:var(--mu)}
@@ -18,7 +18,7 @@ h2{font-size:1.25rem;margin:.2em 0 .3em;letter-spacing:.03em}p{margin:.4em 0;max
 .bar{height:8px;background:var(--ln);border-radius:4px;overflow:hidden;width:110px;display:inline-block;vertical-align:middle}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--ac))}
 .ban{padding:14px 18px;border:1px solid var(--bc);border-left:6px solid var(--bc);border-radius:14px;margin-bottom:10px;box-shadow:0 0 28px -10px var(--bc)}.ban .big{font-size:1.8rem;line-height:1.1;letter-spacing:.02em}
 .b0{--bc:var(--g);background:linear-gradient(90deg,var(--gb),transparent)}.b1{--bc:var(--y);background:linear-gradient(90deg,var(--yb),transparent)}.b2{--bc:var(--r);background:linear-gradient(90deg,var(--rb),transparent)}.b3{--bc:var(--mu);background:var(--glass)}
-.box{background:var(--glass);border:1px solid var(--ln);border-radius:14px;padding:12px 16px;margin-bottom:10px;backdrop-filter:blur(6px)}
+.box{background:var(--glass);border:1px solid var(--ln);border-radius:14px;padding:12px 16px;margin-bottom:10px;backdrop-filter:blur(8px)}
 .box dl{margin:.3em 0;display:grid;grid-template-columns:auto 1fr;gap:3px 14px}.box dt{font-weight:600;color:var(--ac)}.box dd{margin:0}
 .tag{display:inline-block;font:600 .74rem "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:2px 10px;border-radius:99px;background:rgba(124,196,232,.14);color:var(--ac);margin-right:8px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
@@ -32,7 +32,7 @@ button:focus-visible,.t:focus-visible,.hs:focus-visible{outline:3px solid var(--
 .st{justify-self:start;font-weight:600;font-size:.8rem;padding:1px 10px;border-radius:99px;border:1px solid var(--c);color:var(--c);background:rgba(255,255,255,.04)}
 .a{font:600 1rem Barlow,sans-serif;text-align:left;cursor:pointer;background:var(--glass);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:10px 14px;transition:box-shadow .15s,border-color .15s}
 .a:hover:not(:disabled){border-color:var(--ac);box-shadow:0 0 18px -8px var(--ac)}.a:disabled{opacity:.4;cursor:not-allowed}.a.sel{border-color:var(--g);background:var(--gb);box-shadow:0 0 18px -8px var(--g)}.a span{display:block;font-weight:400;font-size:.85rem;color:var(--mu)}
-.go{font:700 1.05rem Barlow,sans-serif;letter-spacing:.02em;background:linear-gradient(135deg,var(--ac),#4aa0d4);color:#06141f;border:0;border-radius:12px;padding:11px 24px;cursor:pointer;margin:8px 0;box-shadow:0 6px 22px -6px var(--ac)}.go:hover:not(:disabled){filter:brightness(1.1)}.go:disabled{opacity:.6}
+.go{font:700 1.05rem Barlow,sans-serif;letter-spacing:.02em;background:linear-gradient(135deg,var(--ac),#4aa0d4);color:#06141f;border:0;border-radius:12px;padding:11px 24px;cursor:pointer;margin:8px 0;box-shadow:0 6px 22px -6px var(--ac);position:relative;z-index:2}.go:hover:not(:disabled){filter:brightness(1.1)}.go:disabled{opacity:.6}
 .fig{width:100%;max-width:230px;margin:0 auto;display:block}.hs{cursor:pointer;color:var(--c)}
 @keyframes pu{50%{opacity:.35}}.pul{animation:pu 1s infinite}
 @keyframes sw{from{transform:translateY(8px)}to{transform:translateY(290px)}}.sweep{animation:sw .9s linear;filter:drop-shadow(0 0 6px #7CC4E8)}
@@ -43,9 +43,14 @@ button:focus-visible,.t:focus-visible,.hs:focus-visible{outline:3px solid var(--
 .rules li{position:relative;padding-left:1.3rem;counter-increment:steps}
 .rules li::before{content:counter(steps) ")";position:absolute;left:0;top:0;color:var(--ac);font:700 1rem "Barlow Condensed",sans-serif}
 .rule-title{margin-top:1rem!important;font-weight:700;color:var(--ac)}
-.charge-rule{padding:9px 12px!important;border-left:3px solid var(--y);border-radius:0 8px 8px 0;background:var(--yb)}
+.charge-rule{padding:10px 14px!important;border-left:3px solid var(--y);border-radius:0 8px 8px 0;background:var(--yb);max-width:100%}
 
-.intro-card{width:min(100%,900px)}
+/* Ajuste para que el cuadro ocupe el ancho completo alineado al margen */
+.intro-wrap{position:relative;z-index:1}
+.intro-card{width:100%;margin-top:14px;position:relative;overflow:hidden}
+.station-bg{position:fixed;right:-40px;bottom:-40px;width:min(680px,75vw);height:auto;pointer-events:none;z-index:0;opacity:.85}
+@media(max-width:700px){.station-bg{width:420px;right:-90px;bottom:-30px;opacity:.45}}
+
 .hud{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
 .hud .it{display:flex;align-items:center;gap:8px;white-space:nowrap}.hud small{color:var(--mu);text-transform:uppercase;letter-spacing:.12em;font:600 .72rem "Barlow Condensed",sans-serif}.hud b{font:700 1.2rem "Barlow Condensed",sans-serif}
 .bar.fat i{background:linear-gradient(90deg,var(--y),var(--r))}
@@ -268,7 +273,91 @@ function fig(L,sc){
 
 function intro(){
   $("#app").className="";
-  $("#app").innerHTML=`<svg class="orb" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".35"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#8a3a22"/></radialGradient></defs><ellipse cx="60" cy="60" rx="56" ry="20" fill="none" stroke="#7CC4E8" stroke-opacity=".5" transform="rotate(-20 60 60)"/><circle cx="60" cy="60" r="26" fill="url(#mg)"/><circle cx="7" cy="79" r="4" fill="#E8F1F5"/></svg><div class="eyebrow">NASA Space Apps Challenge 2026 · Reto 04</div><h1>Bitácora Vital</h1><p class="mu">Juego de monitoreo para una tripulación en tránsito a Marte. NASA Space Apps Challenge 2026: seguimiento de astronautas.</p><div class="box intro-card"><h2>Tu rol</h2><p>Eres el tripulante a cargo del sistema de soporte de la nave. Cada día tiene cuatro pasos:</p><ol class="rules"><li>Escanea al Cdte. Rivera (astronauta sintético) con los electrodos.</li><li>Lee los seis indicadores y el radar predictivo.</li><li>Elige el turno de hoy: trabajo o descanso.</li><li>Decide qué protocolo ejecutar.</li></ol><p class="rule-title">Reglas de decisión</p><p><b>Verde</b> (✓): rutina. <b>Amarillo</b> (!): guía de acción. <b>Rojo</b> (✕), o tres amarillos a la vez: activa el <b>protocolo autónomo</b>.</p><p class="charge-rule"><b>Solo tienes 5 cargas de estabilización</b> en toda la misión; el sistema las ejecuta sin apoyo desde la Tierra.</p><p>Tienes <b>5 misiones fijas</b> con fecha límite. Toca la figura humana para ver cada indicador.</p></div><button class="go" onclick="init()">Iniciar misión</button>`;
+  $("#app").innerHTML=`
+  <svg class="station-bg" viewBox="0 0 600 440" aria-hidden="true">
+    <defs>
+      <radialGradient id="marsAtm" cx="72%" cy="78%" r="55%">
+        <stop offset="0%" stop-color="#f28d52" stop-opacity=".45"/>
+        <stop offset="55%" stop-color="#b84a27" stop-opacity=".28"/>
+        <stop offset="100%" stop-color="#070f17" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="marsBody" cx="62%" cy="68%" r="52%">
+        <stop offset="0%" stop-color="#e38754"/>
+        <stop offset="55%" stop-color="#9e3e22"/>
+        <stop offset="100%" stop-color="#2a0e08"/>
+      </radialGradient>
+      <linearGradient id="solarPanel" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#1b4d7a"/>
+        <stop offset="50%" stop-color="#2e7ab8"/>
+        <stop offset="100%" stop-color="#133352"/>
+      </linearGradient>
+      <linearGradient id="hull" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d8e6f0"/>
+        <stop offset="55%" stop-color="#7f99ad"/>
+        <stop offset="100%" stop-color="#354857"/>
+      </linearGradient>
+    </defs>
+    <!-- Planeta Marte y atmósfera de fondo -->
+    <circle cx="470" cy="360" r="245" fill="url(#marsAtm)"/>
+    <circle cx="470" cy="360" r="205" fill="url(#marsBody)" opacity=".85"/>
+    <!-- Estación Espacial en órbita -->
+    <g transform="translate(340, 225) rotate(-24)">
+      <!-- Eje estructural (Truss) -->
+      <rect x="-210" y="-3" width="420" height="6" fill="#5e768a" rx="2"/>
+      <!-- Paneles solares izquierdos -->
+      <g transform="translate(-165, 0)">
+        <rect x="-32" y="-85" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
+        <rect x="6" y="-85" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
+        <rect x="-32" y="9" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
+        <rect x="6" y="9" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
+        <line x1="-19" y1="-85" x2="-19" y2="-9" stroke="#7CC4E8" stroke-opacity=".35"/>
+        <line x1="19" y1="-85" x2="19" y2="-9" stroke="#7CC4E8" stroke-opacity=".35"/>
+        <line x1="-19" y1="9" x2="-19" y2="85" stroke="#7CC4E8" stroke-opacity=".35"/>
+        <line x1="19" y1="9" x2="19" y2="85" stroke="#7CC4E8" stroke-opacity=".35"/>
+      </g>
+      <!-- Paneles solares derechos -->
+      <g transform="translate(165, 0)">
+        <rect x="-32" y="-85" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
+        <rect x="6" y="-85" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
+        <rect x="-32" y="9" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
+        <rect x="6" y="9" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
+        <line x1="-19" y1="-85" x2="-19" y2="-9" stroke="#7CC4E8" stroke-opacity=".35"/>
+        <line x1="19" y1="-85" x2="19" y2="-9" stroke="#7CC4E8" stroke-opacity=".35"/>
+        <line x1="-19" y1="9" x2="-19" y2="85" stroke="#7CC4E8" stroke-opacity=".35"/>
+        <line x1="19" y1="9" x2="19" y2="85" stroke="#7CC4E8" stroke-opacity=".35"/>
+      </g>
+      <!-- Módulos habitacionales centrales -->
+      <rect x="-58" y="-12" width="116" height="24" rx="8" fill="url(#hull)"/>
+      <rect x="-13" y="-44" width="26" height="88" rx="9" fill="url(#hull)"/>
+      <!-- Nodo central y cúpula -->
+      <circle cx="0" cy="0" r="16" fill="#9fb6c7" stroke="#354857" stroke-width="2"/>
+      <circle cx="0" cy="0" r="7" fill="#7CC4E8" opacity=".8"/>
+      <!-- Luces de baliza -->
+      <circle cx="-210" cy="0" r="2.5" fill="#FF6B6B"/>
+      <circle cx="210" cy="0" r="2.5" fill="#4CD0A0"/>
+    </g>
+  </svg>
+  <div class="intro-wrap">
+    <svg class="orb" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".35"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#8a3a22"/></radialGradient></defs><ellipse cx="60" cy="60" rx="56" ry="20" fill="none" stroke="#7CC4E8" stroke-opacity=".5" transform="rotate(-20 60 60)"/><circle cx="60" cy="60" r="26" fill="url(#mg)"/><circle cx="7" cy="79" r="4" fill="#E8F1F5"/></svg>
+    <div class="eyebrow">NASA Space Apps Challenge 2026 · Reto 04</div>
+    <h1>Bitácora Vital</h1>
+    <p class="mu">Juego de monitoreo para una tripulación en tránsito a Marte. NASA Space Apps Challenge 2026: seguimiento de astronautas.</p>
+    <div class="box intro-card">
+      <h2>Tu rol</h2>
+      <p>Eres el tripulante a cargo del sistema de soporte de la nave. Cada día tiene cuatro pasos:</p>
+      <ol class="rules">
+        <li>Escanea al Cdte. Rivera (astronauta sintético) con los electrodos.</li>
+        <li>Lee los seis indicadores y el radar predictivo.</li>
+        <li>Elige el turno de hoy: trabajo o descanso.</li>
+        <li>Decide qué protocolo ejecutar.</li>
+      </ol>
+      <p class="rule-title">Reglas de decisión</p>
+      <p><b>Verde</b> (✓): rutina. <b>Amarillo</b> (!): guía de acción. <b>Rojo</b> (✕), o tres amarillos a la vez: activa el <b>protocolo autónomo</b>.</p>
+      <p class="charge-rule"><b>Solo tienes 5 cargas de estabilización</b> en toda la misión; el sistema las ejecuta sin apoyo desde la Tierra.</p>
+      <p>Tienes <b>5 misiones fijas</b> con fecha límite. Toca la figura humana para ver cada indicador.</p>
+    </div>
+    <button class="go" onclick="init()">Iniciar misión</button>
+  </div>`;
 }
 
 function grade(){
