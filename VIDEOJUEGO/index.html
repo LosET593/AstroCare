@@ -37,26 +37,33 @@ button:focus-visible,.t:focus-visible,.hs:focus-visible{outline:3px solid var(--
 @keyframes pu{50%{opacity:.35}}.pul{animation:pu 1s infinite}
 @keyframes sw{from{transform:translateY(8px)}to{transform:translateY(290px)}}.sweep{animation:sw .9s linear;filter:drop-shadow(0 0 6px #7CC4E8)}
 @media(prefers-reduced-motion:reduce){.pul,.sweep{animation:none}.t{transition:none}}
-.fine{font-size:.82rem;color:var(--mu);margin-top:18px;border-top:1px solid var(--ln);padding-top:10px}
+.grade{display:grid;place-items:center;width:112px;height:112px;margin:0 auto 12px;border:4px solid var(--ac);border-radius:50%;font:700 4.3rem/.9 "Barlow Condensed",sans-serif;color:var(--ac);text-shadow:0 0 22px var(--ac);box-shadow:inset 0 0 26px rgba(124,196,232,.18),0 0 28px -10px var(--ac)}
+.grade small{display:block;font:600 .7rem Barlow,sans-serif;letter-spacing:.16em;text-transform:uppercase;text-shadow:none;margin-top:-10px}
+.rules{list-style:none;margin:.75rem 0;padding:0;counter-reset:steps;display:grid;gap:.45rem}
+.rules li{position:relative;padding-left:1.3rem;counter-increment:steps}
+.rules li::before{content:counter(steps) ")";position:absolute;left:0;top:0;color:var(--ac);font:700 1rem "Barlow Condensed",sans-serif}
+.rule-title{margin-top:1rem!important;font-weight:700;color:var(--ac)}
+.charge-rule{padding:9px 12px!important;border-left:3px solid var(--y);border-radius:0 8px 8px 0;background:var(--yb)}
 
-#app.dash{max-width:none;height:100vh;padding:10px 12px;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:10px;font-size:14px}
+#app.dash{max-width:none;min-height:100vh;padding:10px 12px;display:grid;grid-template-rows:auto auto auto;gap:10px;font-size:14px}
 .hud{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
 .hud .it{display:flex;align-items:center;gap:8px;white-space:nowrap}.hud small{color:var(--mu);text-transform:uppercase;letter-spacing:.12em;font:600 .72rem "Barlow Condensed",sans-serif}.hud b{font:700 1.2rem "Barlow Condensed",sans-serif}
 .bar.fat i{background:linear-gradient(90deg,var(--y),var(--r))}
-.cols{display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1.5fr) minmax(240px,1fr);gap:10px;min-height:0}.cols>section{min-height:0;overflow:auto;padding:2px}
-.figcol{display:flex;gap:8px;align-items:flex-start}.figbox{flex:1;min-width:0;background:radial-gradient(110% 65% at 50% 10%,rgba(52,126,161,.42),transparent 62%),linear-gradient(180deg,rgba(12,45,67,.96),rgba(5,19,32,.98));border:1px solid var(--ln);border-radius:14px;padding:6px;overflow:hidden}
-.dash .fig{width:108%;max-width:108%;max-height:calc(100vh - 180px);margin-left:-4%;filter:drop-shadow(0 8px 12px rgba(0,0,0,.32))}
-.elec{width:112px;flex:none;background:var(--glass);border:1px solid var(--ln);border-radius:14px;padding:8px;text-align:center}
-.elec small{color:var(--ac);text-transform:uppercase;letter-spacing:.14em;font:600 .72rem "Barlow Condensed",sans-serif}.elec .es{font-size:.8rem;min-height:2.6em;margin:4px 0}.elec .go{width:100%;margin:2px 0;padding:8px 6px}.elec p{font-size:.72rem;margin:4px 0 0}
+.cols{display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1.5fr) minmax(240px,1fr);gap:10px;min-height:0;align-items:start}.cols>section{min-height:0;overflow:visible;padding:2px}
+.figcol{display:flex;flex-direction:column;gap:8px;min-height:0}.figbox{flex:none;aspect-ratio:7/10;min-width:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(110% 65% at 50% 10%,rgba(52,126,161,.42),transparent 62%),linear-gradient(180deg,rgba(12,45,67,.96),rgba(5,19,32,.98));border:1px solid var(--ln);border-radius:14px;padding:6px;overflow:hidden}
+.dash .fig{width:auto;max-width:108%;height:100%;max-height:100%;margin:0;filter:drop-shadow(0 8px 12px rgba(0,0,0,.32))}
+.elec{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;width:auto;background:rgba(10,28,42,.9);border:1px solid rgba(124,196,232,.55);border-radius:14px;padding:8px 10px;text-align:left;box-shadow:0 10px 26px rgba(0,0,0,.28);backdrop-filter:blur(8px)}
+.elec small{color:var(--ac);text-transform:uppercase;letter-spacing:.14em;font:600 .72rem "Barlow Condensed",sans-serif}.elec .es{font-size:.8rem;min-height:0;margin:0}.elec .go{width:auto;margin:0;padding:8px 14px}.elec p{display:none}
+.mission-panel{scrollbar-width:none;-ms-overflow-style:none}.mission-panel::-webkit-scrollbar{display:none}
 .dash .ban{padding:7px 12px;margin-bottom:8px}.dash .ban .big{font-size:1.3rem}.dash .box{padding:8px 12px;margin-bottom:8px}.dash .det{font-size:.82rem}.dash h2{font-size:1.05rem;margin:4px 0}
 .dash .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:8px}.dash .t{padding:6px 10px}.dash .vl{font-size:1.6rem}.dash .nm{font-size:.95rem}.dash .t svg{height:24px}
 .ms{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-radius:12px;padding:7px 12px;margin-bottom:7px}
 .ms b{display:block;font-size:.95rem}.ms .mu{display:block;font-size:.78rem}.ms.on{border-color:var(--ac);box-shadow:0 0 16px -8px var(--ac)}.ms.ok{border-color:var(--g);opacity:.75}.ms.ko{border-color:var(--r);opacity:.6}
 .pb{display:block;height:5px;background:var(--ln);border-radius:3px;overflow:hidden;margin-top:5px}.pb i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--g))}
-.dock{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;padding:8px 12px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
+.dock{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:end;padding:8px 12px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
 .dg small{display:block;color:var(--mu);text-transform:uppercase;letter-spacing:.1em;font:600 .72rem "Barlow Condensed",sans-serif;margin-bottom:3px}.row{display:flex;flex-wrap:wrap;gap:8px}
 .dock .a{padding:6px 12px;font-size:.9rem}.dock .a span{font-size:.75rem}.dock .go{margin:0;padding:9px 22px}
-@media(max-width:900px){#app.dash{height:auto;min-height:100vh;display:block}.hud{position:sticky;top:0;z-index:5;background:rgba(10,24,36,.92)}.cols{display:block;margin:10px 0}.cols>section{margin-bottom:10px;overflow:visible}.dock{position:sticky;bottom:0;z-index:5;background:rgba(10,24,36,.94)}.dash .fig{max-height:60vh}}
+@media(max-width:900px){#app.dash{height:auto;min-height:100vh;display:block}.hud{position:sticky;top:0;z-index:5;background:rgba(10,24,36,.92)}.cols{display:block;margin:10px 0}.cols>section{margin-bottom:10px;overflow:visible}.figcol{display:block;min-height:0}.figbox{display:block;min-height:440px}.elec{margin-top:8px;gap:8px}.elec .go{padding:8px 12px}.dock{grid-template-columns:1fr;position:sticky;bottom:0;z-index:5;background:rgba(10,24,36,.94)}.dash .fig{width:108%;max-width:108%;height:auto;max-height:60vh;margin-left:-4%}}
 </style></head><body><div id="app"></div>
 <script>
 const $=s=>document.querySelector(s);
@@ -69,8 +76,7 @@ const IND=[
 {k:"sue",n:"Horas de sueño",u:"h",dc:1,K:0,g:[7,9.5],y:[5.5,10.5],why:"El ciclo luz-oscuridad se pierde (16 amaneceres al día en órbita), hay ruido y confinamiento. En la ISS se duerme cerca de 6 h.",guide:"Cumple un horario fijo, baja la luz y las pantallas 1 h antes y reduce el ruido del módulo.",src:"AASM/CDC: 7 h o más en adultos. Barger et al. 2014: ≈6 h en la ISS."},
 {k:"ani",n:"Ánimo (1–10)",u:"/10",b:7.8,sd:.4,fl:0,K:-.08,dc:1,g:[6,10],y:[4,10],why:"El aislamiento, el confinamiento y la distancia de la Tierra pesan en el ánimo con el paso de las semanas.",guide:"Videollamada con tu familia, una actividad que disfrutes y una conversación con tu compañero de misión.",src:"Escala propia de autorreporte, sin umbral clínico. Sustituir por un instrumento validado (POMS o PHQ-9)."}];
 
-const BD="M94 46L94 60C94 66,88 68,80 70C70 72,64 76,62 86C60 96,59 104,57 114C55 124,53 134,51 144C49 154,46 164,43 174C42 180,40 186,39 190C36 196,34 204,36 210C38 215,46 215,47 209C48 202,48 196,47 190C49 182,51 172,54 162C57 152,58 144,60 136C62 126,64 116,66 108C67 102,68 98,70 94C71 106,75 122,78 138C79 148,74 158,72 170C70 176,70 190,71 204C72 216,73 228,75 240C75 248,71 256,72 266C73 276,76 280,77 286C77 290,72 292,67 293C64 294,64 298,68 298L90 298C93 298,93 294,92 290C91 286,91 282,91 278C91 268,90 256,91 246C92 238,93 226,94 214C95 204,97 196,100 190C103 196,105 204,106 214C107 226,108 238,109 246C110 256,109 268,109 278C109 282,109 286,108 290C107 294,107 298,110 298L132 298C136 298,136 294,133 293C128 292,123 290,123 286C124 280,127 276,128 266C129 256,125 248,125 240C127 228,128 216,129 204C130 190,130 176,128 170C126 158,121 148,122 138C125 122,129 106,130 94C132 98,133 102,134 108C136 116,138 126,140 136C142 144,143 152,146 162C149 172,151 182,153 190C152 196,152 202,153 209C154 215,162 215,164 210C166 204,164 196,161 190C160 186,158 180,157 174C154 164,151 154,149 144C147 134,145 124,143 114C141 104,140 96,138 86C136 76,130 72,120 70C112 68,106 66,106 60L106 46Z";
-const POS={tmp:[100,22,148,26,'start'],sue:[112,38,148,42,'start'],ani:[88,38,52,42,'end'],fc:[112,100,152,104,'start'],pa:[55,112,34,118,'end'],glu:[100,150,40,154,'end']};
+const POS={tmp:[100,22,148,26,'start'],sue:[112,38,148,42,'start'],ani:[88,38,52,42,'end'],fc:[112,100,152,104,'start'],pa:[55,112,34,118,'end'],glu:[100,130,40,134,'end']};
 const EV=[
 {t:"Día tranquilo",h:"Sin peligro",x:"Rutina normal a bordo.",s:{}},
 {t:"Tormenta solar",h:"Radiación",x:"Subió la radiación y la tripulación se refugió en el módulo blindado.",s:{fc:12,sue:-1.2,ani:-.8,tmp:.2}},
@@ -94,7 +100,7 @@ const fmt=(i,v)=>i.dc?v.toFixed(1):Math.round(v);
 let S;
 
 function init(){
-  S={ms:MIS.map(m=>({...m,p:0,done:false,failed:false})),msel:0,pend:{},alert:"",phase:"",day:0,score:0,health:100,win:5,debt:0,adj:{},hist:{},cur:{},plan:1,sleepPlan:7.5,sel:"sue",scanned:false,scanning:false,done:false,msg:"",ev:null,first:null};
+  S={ms:MIS.map(m=>({...m,p:0,done:false,failed:false})),msel:0,pend:{},alert:"",phase:"",day:0,score:0,health:100,cores:5,debt:0,adj:{},hist:{},cur:{},plan:1,sleepPlan:7.5,sel:"sue",scanned:false,scanning:false,done:false,msg:"",ev:null,first:null};
   IND.forEach(i=>{S.adj[i.k]=0;S.hist[i.k]=[]});
   newDay();
 }
@@ -198,7 +204,7 @@ function spark(i,p){
     ${p.length?`<polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" opacity=".7" points="${pt([h[h.length-1],...p],h.length-1)}"/>`:""}
   </svg>`;
 }
-  
+
 function pick(k){S.sel=k;render()}
 function setPlan(j){S.plan=j;S.sleepPlan=PL[j].h;render()}
 function selM(j){S.msel=j;render()}
@@ -215,10 +221,10 @@ function act(a){
   const n=need(),wi=worst();
   let d=0,h=0,m="";
   if(a==2){
-    if(S.win<1)return;
-    S.win--;S.debt*=.3;IND.forEach(i=>S.adj[i.k]*=.15);
-    if(n==2){d+=10;m="Escalaste a tiempo. El cirujano de vuelo en Tierra revisó los datos y dio instrucciones. Se gastó una ventana de comunicación."}
-    else{d-=5;m="Escalaste sin necesidad y gastaste una ventana de comunicación que podrías necesitar después."}
+    if(S.cores<1)return;
+    S.cores--;S.debt*=.3;IND.forEach(i=>S.adj[i.k]*=.15);
+    if(n==2){d+=10;m="Activaste a tiempo el protocolo autónomo. El sistema estabilizó las señales y consumió una carga."}
+    else{d-=5;m="Activaste el protocolo sin necesidad y gastaste una carga que podría hacer falta después."}
   }
   if(a==1){
     IND.forEach(i=>{
@@ -229,12 +235,12 @@ function act(a){
     if(lvl(IND[4],S.cur.sue)||lvl(IND[5],S.cur.ani))S.debt*=.8;
     if(n==1){d+=10;m="Buena decisión: aplicaste la guía de acción. "+wi.guide}
     else if(n==0){d+=2;m="Todo estaba normal. No hacía falta, pero cuidar los hábitos nunca sobra."}
-    else{d-=10;h=-8;m="La guía no alcanzaba: había una alerta roja o tres amarillas a la vez. Debías escalar al cirujano de vuelo."}
+    else{d-=10;h=-8;m="La guía no alcanzaba: había una alerta roja o tres amarillas a la vez. Debías activar el protocolo autónomo."}
   }
   if(a==0){
     if(n==0){d+=10;m="Correcto: todo normal, se continúa con la rutina."}
     else if(n==1){d-=5;h=-4;m="Seguir sin actuar dejó que los indicadores amarillos empeoren."}
-    else{d-=15;h=-12;m="Ignoraste una situación que requería escalar. La salud de la tripulación se deteriora."}
+    else{d-=15;h=-12;m="Ignoraste una situación que requería activar el protocolo. La salud de la tripulación se deteriora."}
   }
 
   const am=activeM(),u=PL[S.plan].u;
@@ -251,23 +257,34 @@ function act(a){
 }
 
 function fig(L,sc){
-  return `<svg class="fig" viewBox="0 0 200 300" role="group" aria-label="Figura humana con sensores de salud"><defs><linearGradient id="sb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7CC4E8" stop-opacity="0"/><stop offset="1" stop-color="#7CC4E8" stop-opacity=".6"/></linearGradient><clipPath id="bc"><path d="${BD}"/></clipPath></defs><image href="JOSXPRM.png" x="0" y="0" width="200" height="300" preserveAspectRatio="xMidYMid meet"/>`+
+  const silhouette="JOSXPRM.png?rev=20261115";
+  return `<svg class="fig" viewBox="0 0 200 300" role="group" aria-label="Silueta actual del tripulante con sensores"><defs><linearGradient id="sb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7CC4E8" stop-opacity="0"/><stop offset="1" stop-color="#7CC4E8" stop-opacity=".6"/></linearGradient><mask id="scan-mask"><image href="${silhouette}" x="0" y="0" width="200" height="300" preserveAspectRatio="xMidYMid meet"/></mask></defs><image href="${silhouette}" x="0" y="0" width="200" height="300" preserveAspectRatio="xMidYMid meet"/>`+
   IND.map((i,j)=>{
     const[x,y,lx,ly,an]=POS[i.k],c=sc?L[j]:3,e=an=="start"?[x+9,lx-3]:[x-9,lx+3];
     return `<g class="hs c${c}${sc||S.scanning?"":" pul"}" tabindex="0" role="button" aria-label="${i.n}" onclick="pick('${i.k}')" onkeydown="if(event.key=='Enter')pick('${i.k}')"><line x1="${e[0]}" y1="${y}" x2="${e[1]}" y2="${ly-4}" stroke="currentColor" stroke-opacity=".55"/><circle cx="${x}" cy="${y}" r="15" fill="currentColor" opacity=".18"/><circle cx="${x}" cy="${y}" r="9" fill="currentColor" stroke="var(--pn)" stroke-width="2"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--pn)">${sc?GL[c]:"?"}</text><text x="${lx}" y="${ly}" text-anchor="${an}" font-size="11" fill="var(--tx)">${{tmp:"T°",ani:"Ánimo",sue:"Sueño",fc:"FC",pa:"PA",glu:"Glu"}[i.k]}</text></g>`;
   }).join("")+
-  (S.scanning?`<g clip-path="url(#bc)"><rect class="sweep" x="0" y="-30" width="200" height="30" fill="url(#sb)"/></g><rect class="sweep" x="25" y="0" width="150" height="3" rx="1.5" fill="#bfe6fa"/>`:"")+`</svg>`;
+  (S.scanning?`<g mask="url(#scan-mask)"><rect class="sweep" x="0" y="-30" width="200" height="30" fill="url(#sb)"/></g><rect class="sweep" x="25" y="0" width="150" height="3" rx="1.5" fill="#bfe6fa"/>`:"")+`</svg>`;
 }
 
 function intro(){
   $("#app").className="";
-  $("#app").innerHTML=`<svg class="orb" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".35"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#8a3a22"/></radialGradient></defs><ellipse cx="60" cy="60" rx="56" ry="20" fill="none" stroke="#7CC4E8" stroke-opacity=".5" transform="rotate(-20 60 60)"/><circle cx="60" cy="60" r="26" fill="url(#mg)"/><circle cx="7" cy="79" r="4" fill="#E8F1F5"/></svg><div class="eyebrow">NASA Space Apps Challenge 2026 · Reto 04</div><h1>Bitácora Vital</h1><p class="mu">Juego de monitoreo de salud para una tripulación en tránsito a Marte. NASA Space Apps Challenge 2026: monitoreo de salud de astronautas.</p><div class="box"><h2>Tu rol</h2><p>Eres el sistema de salud de la nave. Cada día (30 en total): <b>1)</b> escaneas al Cdte. Rivera (astronauta sintético) con los electrodos, <b>2)</b> lees seis indicadores y el radar predictivo, <b>3)</b> eliges el turno de hoy (trabajo o descanso) y <b>4)</b> decides qué hacer.</p><p><b>Verde</b> (✓) rutina. <b>Amarillo</b> (!) guía de acción. <b>Rojo</b> (✕), o tres amarillos a la vez: escalar al cirujano de vuelo en Tierra. Solo tienes <b>5 ventanas de comunicación</b> en toda la misión.</p><p>Tienes <b>5 misiones fijas</b> con fecha límite. Toca la figura humana para ver cada indicador.</p></div><button class="go" onclick="init()">Iniciar misión</button><p class="fine">Herramienta educativa con datos sintéticos. No es diagnóstico médico.</p>`;
+  $("#app").innerHTML=`<svg class="orb" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".35"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#8a3a22"/></radialGradient></defs><ellipse cx="60" cy="60" rx="56" ry="20" fill="none" stroke="#7CC4E8" stroke-opacity=".5" transform="rotate(-20 60 60)"/><circle cx="60" cy="60" r="26" fill="url(#mg)"/><circle cx="7" cy="79" r="4" fill="#E8F1F5"/></svg><div class="eyebrow">NASA Space Apps Challenge 2026 · Reto 04</div><h1>Bitácora Vital</h1><p class="mu">Juego de monitoreo para una tripulación en tránsito a Marte. NASA Space Apps Challenge 2026: seguimiento de astronautas.</p><div class="box"><h2>Tu rol</h2><p>Eres el tripulante a cargo del sistema de soporte de la nave. Cada día tiene cuatro pasos:</p><ol class="rules"><li>Escanea al Cdte. Rivera (astronauta sintético) con los electrodos.</li><li>Lee los seis indicadores y el radar predictivo.</li><li>Elige el turno de hoy: trabajo o descanso.</li><li>Decide qué protocolo ejecutar.</li></ol><p class="rule-title">Reglas de decisión</p><p><b>Verde</b> (✓): rutina. <b>Amarillo</b> (!): guía de acción. <b>Rojo</b> (✕), o tres amarillos a la vez: activa el <b>protocolo autónomo</b>.</p><p class="charge-rule"><b>Solo tienes 5 cargas de estabilización</b> en toda la misión; el sistema las ejecuta sin apoyo desde la Tierra.</p><p>Tienes <b>5 misiones fijas</b> con fecha límite. Toca la figura humana para ver cada indicador.</p></div><button class="go" onclick="init()">Iniciar misión</button>`;
+}
+
+function grade(){
+  const complete=S.ms.filter(m=>m.done).length;
+  if(S.health<=0)return{letter:"F",title:"Misión abortada",note:"La estabilidad de la tripulación llegó a 0."};
+  if(S.score>=500&&complete===S.ms.length&&S.health>=80)return{letter:"S",title:"Operación impecable",note:"Dominaste la misión, preservaste la estabilidad y cerraste todos los objetivos."};
+  if(S.score>=400)return{letter:"A",title:"Operación sobresaliente",note:"Tomaste decisiones sólidas en situaciones críticas."};
+  if(S.score>=280)return{letter:"B",title:"Operación competente",note:"La misión llegó a destino con margen de mejora."};
+  if(S.score>=160)return{letter:"C",title:"Operación completada",note:"Llegaste al final, pero varias decisiones redujeron el rendimiento."};
+  return{letter:"D",title:"Operación en riesgo",note:"La misión se completó con recursos muy comprometidos."};
 }
 
 function end(){
-  const ab=S.health<=0,r=ab?"Misión abortada":S.score>=400?"Cirujano de vuelo estelar":S.score>=250?"Oficial médico competente":"Cadete en práctica";
+  const ab=S.health<=0,g=grade(),complete=S.ms.filter(m=>m.done).length;
   $("#app").className="";
-  $("#app").innerHTML=`<h1>${r}</h1><div class="ban b${ab?2:S.health>60?0:1}"><div class="big">${S.score} puntos</div><div>${ab?"La salud de la tripulación llegó a 0 el día "+S.day+".":"Misión completada. Salud final: "+S.health+"/100. Ventanas sin usar: "+S.win+"."}</div></div><p>Misiones cumplidas: <b>${S.ms.filter(m=>m.done).length}/${S.ms.length}</b>.</p><button class="go" onclick="init()">Jugar de nuevo</button>`;
+  $("#app").innerHTML=`<div class="grade" aria-label="Calificación final ${g.letter}">${g.letter}<small>rango final</small></div><h1>${g.title}</h1><div class="ban b${ab?2:S.health>60?0:1}"><div class="big">${S.score} puntos</div><div>${g.note}</div><div class="mu">${ab?"Día "+S.day+".":"Estabilidad final: "+S.health+"/100 · Cargas sin usar: "+S.cores+"."}</div></div><p>Misiones cumplidas: <b>${complete}/${S.ms.length}</b>. Rangos: <b>S</b> impecable · <b>A</b> sobresaliente · <b>B</b> competente · <b>C</b> completada · <b>D</b> en riesgo · <b>F</b> abortada.</p><button class="go" onclick="init()">Jugar de nuevo</button>`;
 }
 
 function render(){
@@ -276,7 +293,7 @@ function render(){
   const sc=S.scanned,L=levels(),n=sc?Math.max(...L):3,i=IND.find(x=>x.k==S.sel),R=sc?radar():null,P=R?R.P:null,am=activeM();
   const st=["Tripulación estable","Atención: revisa los amarillos","Alerta: indicador fuera de rango","Sin datos: escanea al tripulante"][n];
   const fat=Math.min(100,Math.round(S.debt*4)),dn=S.ms.filter(m=>m.done).length,dis=sc?"":"disabled";
-  const adv=[["Rutina","Todo normal"],["Guía de acción","Ayuda a los amarillos"],["Escalar al cirujano","Usa 1 ventana"]];
+  const adv=[["Rutina","Todo normal"],["Guía de acción","Ayuda a los amarillos"],["Protocolo autónomo","Usa 1 carga"]];
 
   let rd="";
   if(sc){
@@ -291,9 +308,9 @@ function render(){
 
   const mis=S.ms.map((m,j)=>`<button class="ms${m===am?" on":""}${m.done?" ok":""}${m.failed?" ko":""}" ${m.done||m.failed?"disabled":""} onclick="selM(${j})"><span class="tag">${m.h}</span><b>${m.done?"✓ ":m.failed?"✕ ":""}${m.n}</b><span class="mu">${m.p}/${m.need} · límite día ${m.d} · +${m.r}</span><span class="pb"><i style="width:${m.p/m.need*100}%"></i></span></button>`).join("");
 
-  const dock=S.done?`<button class="go" onclick="newDay()">${S.day>=N?"Ver resultado":"Siguiente día →"}</button><span class="mu">Turno elegido: ${PL[S.plan].t}</span>`:`<div class="dg"><small>Turno de hoy · misión activa: ${am?am.n:"ninguna"}</small><div class="row">${PL.map((p,j)=>`<button class="a${S.plan==j?" sel":""}" onclick="setPlan(${j})">${p.t} · ${p.h} h<span>Trabajo +${p.u}</span></button>`).join("")}</div></div><div class="dg"><small>Acción del día${sc?"":" (escanea primero)"}</small><div class="row">${adv.map((a,j)=>`<button class="a" ${j==2&&S.win<1?"disabled":dis} onclick="act(${j})">${a[0]}<span>${a[1]}</span></button>`).join("")}</div></div>`;
+  const dock=S.done?`<button class="go" onclick="newDay()">${S.day>=N?"Ver resultado":"Siguiente día →"}</button><span class="mu">Turno elegido: ${PL[S.plan].t}</span>`:`<div class="dg"><small>Turno de hoy · misión activa: ${am?am.n:"ninguna"}</small><div class="row">${PL.map((p,j)=>`<button class="a${S.plan==j?" sel":""}" onclick="setPlan(${j})">${p.t} · ${p.h} h<span>Trabajo +${p.u}</span></button>`).join("")}</div></div><div class="dg"><small>Acción del día${sc?"":" (escanea primero)"}</small><div class="row">${adv.map((a,j)=>`<button class="a" ${j==2&&S.cores<1?"disabled":dis} onclick="act(${j})">${a[0]}<span>${a[1]}</span></button>`).join("")}</div></div>`;
 
-  $("#app").innerHTML=`<div class="hud"><div class="it"><small>Día</small><b>${Math.min(S.day,N)}/${N}</b></div><div class="it"><small>Puntos</small><b>${S.score}</b></div><div class="it"><small>Salud</small><span class="bar"><i style="width:${S.health}%"></i></span><b>${S.health}</b></div><div class="it"><small>Cansancio</small><span class="bar fat"><i style="width:${fat}%"></i></span><b>${fat}%</b></div><div class="it"><small>Ventanas</small><b>${S.win}</b></div><div class="it"><small>Misiones</small><b>${dn}/${S.ms.length}</b></div></div><div class="cols"><section class="figcol"><div class="figbox">${fig(L,sc)}</div><div class="elec"><small>Electrodos</small><div class="es">${S.scanning?S.phase:sc?"Escaneo completo ✓":"Listos"}</div><button class="go" ${S.scanning||sc?"disabled":""} onclick="scan()">${S.scanning?"…":sc?"Hecho":"Escanear"}</button><p class="mu">Un clic coloca los electrodos y lee los 6 indicadores.</p></div></section><section><div class="ban b${n}"><div class="big">${sc?SH[n]+" ":""}${st}</div></div>${rd}<div class="grid">${tiles}</div><div class="box det"><b>${i.n}</b><dl><dt>Por qué cambia</dt><dd>${i.why}</dd><dt>Rango normal</dt><dd>${i.g[0]}–${i.g[1]} ${i.u}</dd><dt>Guía</dt><dd>${i.guide}</dd><dt>Fuente</dt><dd>${i.src}</dd></dl></div></section><section>${S.alert?`<div class="ban b2">${S.alert}</div>`:""}<div class="box"><span class="tag">${S.ev.h}</span><b>${S.ev.t}</b><br>${S.ev.x}</div>${S.done?`<div class="box">${S.msg}</div>`:""}<h2>Misiones</h2>${mis}<p class="fine">Datos sintéticos. Herramienta educativa, no diagnóstico médico.</p></section></div><div class="dock">${dock}</div>`;
+  $("#app").innerHTML=`<div class="hud"><div class="it"><small>Día</small><b>${Math.min(S.day,N)}/${N}</b></div><div class="it"><small>Puntos</small><b>${S.score}</b></div><div class="it"><small>Salud</small><span class="bar"><i style="width:${S.health}%"></i></span><b>${S.health}</b></div><div class="it"><small>Cansancio</small><span class="bar fat"><i style="width:${fat}%"></i></span><b>${fat}%</b></div><div class="it"><small>Cargas</small><b>${S.cores}</b></div><div class="it"><small>Misiones</small><b>${dn}/${S.ms.length}</b></div></div><div class="cols"><section class="figcol"><div class="figbox">${fig(L,sc)}</div><div class="elec"><small>Electrodos</small><div class="es">${S.scanning?S.phase:sc?"Escaneo completo ✓":"Listos"}</div><button class="go" ${S.scanning||sc?"disabled":""} onclick="scan()">${S.scanning?"…":sc?"Hecho":"Escanear"}</button></div></section><section><div class="ban b${n}"><div class="big">${sc?SH[n]+" ":""}${st}</div></div>${rd}<div class="grid">${tiles}</div><div class="box det"><b>${i.n}</b><dl><dt>Por qué cambia</dt><dd>${i.why}</dd><dt>Rango normal</dt><dd>${i.g[0]}–${i.g[1]} ${i.u}</dd><dt>Guía</dt><dd>${i.guide}</dd><dt>Fuente</dt><dd>${i.src}</dd></dl></div></section><section class="mission-panel">${S.alert?`<div class="ban b2">${S.alert}</div>`:""}<div class="box"><span class="tag">${S.ev.h}</span><b>${S.ev.t}</b><br>${S.ev.x}</div>${S.done?`<div class="box">${S.msg}</div>`:""}<h2>Misiones</h2>${mis}</section></div><div class="dock">${dock}</div>`;
 }
 
 intro();
