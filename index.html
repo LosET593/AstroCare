@@ -185,11 +185,20 @@ function radar(){
 }
 
 function spark(i,p){
-  const h=S.hist[i.k].slice(-12),a=[...h,...p],lo=Math.min(...a,i.g[0]),hi=Math.max(...a,i.g[1]),W=200,H=34,n=a.length;
-  const Y=v=>H-2-(v-lo)/(hi-lo||1)*(H-4),X=j=>2+j*(W-4)/Math.max(n-1,1),pt=(r,o)=>r.map((v,j)=>X(j+o)+","+Y(v)).join(" ");
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="${Y(i.g[1])}" width="${W}" height="${Math.max(Y(i.g[0])-Y(i.g[1]),1)}" fill="currentColor" opacity=".14"/><polyline fill="none" stroke="currentColor" stroke-width="2" points="${pt(h,0)}"/>${p.length?`<polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" opacity=".7" points="${pt([h[h.length-1],...p],h.length-1)}"/>`:""}</svg>`;
-}
+  const raw=S.hist[i.k].slice(-12);
+  const h=raw.length<2?[raw[0]??i.b,raw[0]??i.b]:raw;
+  const a=[...h,...p],lo=Math.min(...a,i.g[0]),hi=Math.max(...a,i.g[1]),W=200,H=34,n=a.length;
+  const Y=v=>H-2-(v-lo)/(hi-lo||1)*(H-4);
+  const X=j=>2+j*(W-4)/Math.max(n-1,1);
+  const pt=(r,o)=>r.map((v,j)=>X(j+o)+","+Y(v)).join(" ");
 
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
+    <rect x="0" y="${Y(i.g[1])}" width="${W}" height="${Math.max(Y(i.g[0])-Y(i.g[1]),1)}" fill="currentColor" opacity=".14"/>
+    <polyline fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" points="${pt(h,0)}"/>
+    ${p.length?`<polyline fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" opacity=".7" points="${pt([h[h.length-1],...p],h.length-1)}"/>`:""}
+  </svg>`;
+}
+  
 function pick(k){S.sel=k;render()}
 function setPlan(j){S.plan=j;S.sleepPlan=PL[j].h;render()}
 function selM(j){S.msel=j;render()}
