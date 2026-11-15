@@ -45,11 +45,11 @@ button:focus-visible,.t:focus-visible,.hs:focus-visible{outline:3px solid var(--
 .rule-title{margin-top:1rem!important;font-weight:700;color:var(--ac)}
 .charge-rule{padding:10px 14px!important;border-left:3px solid var(--y);border-radius:0 8px 8px 0;background:var(--yb);max-width:100%}
 
-/* Ajuste para que el cuadro ocupe el ancho completo alineado al margen */
-.intro-wrap{position:relative;z-index:1}
+/* Estilos para alinear el contenido de bienvenida a la izquierda y mostrar la estación de fondo */
+.intro-container{max-width:620px;margin:0;position:relative;z-index:1}
 .intro-card{width:100%;margin-top:14px;position:relative;overflow:hidden}
-.station-bg{position:fixed;right:-40px;bottom:-40px;width:min(680px,75vw);height:auto;pointer-events:none;z-index:0;opacity:.85}
-@media(max-width:700px){.station-bg{width:420px;right:-90px;bottom:-30px;opacity:.45}}
+.station-bg{position:fixed;right:0;bottom:0;width:min(720px,65vw);height:auto;pointer-events:none;z-index:0;opacity:.9}
+@media(max-width:900px){.station-bg{width:450px;right:-60px;bottom:0;opacity:.4}}
 
 .hud{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
 .hud .it{display:flex;align-items:center;gap:8px;white-space:nowrap}.hud small{color:var(--mu);text-transform:uppercase;letter-spacing:.12em;font:600 .72rem "Barlow Condensed",sans-serif}.hud b{font:700 1.2rem "Barlow Condensed",sans-serif}
@@ -257,7 +257,7 @@ function act(a){
   }
 
   S.score+=d;S.health=cl(S.health+h,0,100);
-  S.msg=`<b>${d>=0?"+":""}${d} puntos${h?" · salud "+h:""}.</b> ${m} Dormirás ${PL[S.plan].h} h esta noche.`;
+  S.msg=`<b>${d>=0?"+":""}${d} puntos${h?" salud "+h:""}.</b> ${m} Dormirás ${PL[S.plan].h} h esta noche.`;
   S.done=true;render();
 }
 
@@ -337,7 +337,7 @@ function intro(){
       <circle cx="210" cy="0" r="2.5" fill="#4CD0A0"/>
     </g>
   </svg>
-  <div class="intro-wrap">
+  <div class="intro-container">
     <svg class="orb" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".35"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#8a3a22"/></radialGradient></defs><ellipse cx="60" cy="60" rx="56" ry="20" fill="none" stroke="#7CC4E8" stroke-opacity=".5" transform="rotate(-20 60 60)"/><circle cx="60" cy="60" r="26" fill="url(#mg)"/><circle cx="7" cy="79" r="4" fill="#E8F1F5"/></svg>
     <div class="eyebrow">NASA Space Apps Challenge 2026 · Reto 04</div>
     <h1>Bitácora Vital</h1>
@@ -389,7 +389,7 @@ function render(){
     if(!R)rd=`<div class="box"><b>Radar predictivo:</b> faltan lecturas (${S.day}/4).</div>`;
     else{
       const lv=R.al?2:R.at?1:0;
-      rd=`<div class="ban b${lv}"><b>Radar:</b> ${R.al?`alerta en ~${R.al} días (${R.wa.join(", ")})`:R.at?`atención en ~${R.at} días (${R.wt.join(", ")})`:"sin cambios de semáforo previstos en 7 días"}. <small class="mu">Puntos = proyección.</small></div>`;
+      rd=`<div class="ban b${lv}"><b>Radar:</b> ${R.al?`alerta en ~${R.al} days (${R.wa.join(", ")})`:R.at?`atención en ~${R.at} días (${R.wt.join(", ")})`:"sin cambios de semáforo previstos en 7 días"}. <small class="mu">Puntos = proyección.</small></div>`;
     }
   }
 
