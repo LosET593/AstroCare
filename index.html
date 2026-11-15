@@ -2,35 +2,51 @@
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bitácora Vital · Misión a Marte</title>
+<meta name="theme-color" content="#070f17">
 <meta name="description" content="Juego de monitoreo de salud de astronautas. NASA Space Apps Challenge 2026.">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:light dark;--bg:#EDF2F4;--pn:#fff;--tx:#10242E;--mu:#52696F;--ln:#D3DEE2;--g:#1E8E63;--y:#9A6412;--r:#C93C3C;--ac:#1D5E80;--gb:#DDF3EA;--yb:#FBEFD3;--rb:#F9DEDE}
-@media(prefers-color-scheme:dark){:root{--bg:#0C1B24;--pn:#14293A;--tx:#E6EFF2;--mu:#93AAB4;--ln:#24404F;--g:#4CD0A0;--y:#F2B63C;--r:#FF7A7A;--ac:#7CC4E8;--gb:#12392F;--yb:#3A2F12;--rb:#432024}}
-*{box-sizing:border-box}body{margin:0;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);background:var(--bg);color:var(--tx);font:16px/1.5 Barlow,system-ui,sans-serif}
-#app{max-width:980px;margin:0 auto;padding:16px}
+:root{color-scheme:dark;--bg:#070f17;--pn:#0f2233;--glass:rgba(16,38,56,.68);--tx:#E8F1F5;--mu:#8FA9B6;--ln:rgba(124,196,232,.2);--g:#4CD0A0;--y:#F2B63C;--r:#FF6B6B;--ac:#7CC4E8;--gb:rgba(76,208,160,.13);--yb:rgba(242,182,60,.13);--rb:rgba(255,107,107,.15)}
+*{box-sizing:border-box}
+body{margin:0;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);min-height:100vh;color:var(--tx);font:16px/1.5 Barlow,system-ui,sans-serif;
+background:radial-gradient(900px 500px at 85% -5%,rgba(40,90,140,.38),transparent 70%),radial-gradient(800px 500px at 5% 105%,rgba(170,70,40,.26),transparent 70%),
+radial-gradient(1.2px 1.2px at 12% 18%,#fff9,transparent),radial-gradient(1px 1px at 34% 72%,#fff7,transparent),radial-gradient(1.4px 1.4px at 58% 30%,#fffa,transparent),radial-gradient(1px 1px at 79% 62%,#fff8,transparent),radial-gradient(1.2px 1.2px at 91% 14%,#fff9,transparent),radial-gradient(1px 1px at 46% 90%,#fff6,transparent),var(--bg);
+background-size:100% 100%,100% 100%,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px}
+#app{max-width:980px;margin:0 auto;padding:18px 16px 28px}
 h1,h2,.nm,.big{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:700}
-h1{font-size:2.5rem;line-height:1.05;margin:.2em 0}h2{font-size:1.25rem;margin:0 0 .3em}p{margin:.4em 0;max-width:70ch}.mu{color:var(--mu)}
-.top{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;border-bottom:1px solid var(--ln);padding-bottom:8px;margin-bottom:12px}
-.bar{height:8px;background:var(--ln);border-radius:4px;overflow:hidden;width:110px;display:inline-block;vertical-align:middle}.bar i{display:block;height:100%;background:var(--ac)}
-.ban{padding:12px 16px;border-left:10px solid;border-radius:6px;margin-bottom:10px}.ban .big{font-size:1.7rem;line-height:1.1}
-.b0{background:var(--gb);border-color:var(--g)}.b1{background:var(--yb);border-color:var(--y)}.b2{background:var(--rb);border-color:var(--r)}.b3{background:var(--pn);border-color:var(--mu)}
-.box{background:var(--pn);border:1px solid var(--ln);border-radius:6px;padding:10px 14px;margin-bottom:10px}
-.box dl{margin:.3em 0;display:grid;grid-template-columns:auto 1fr;gap:2px 12px}.box dt{font-weight:600}.box dd{margin:0}
-.main{display:grid;grid-template-columns:230px 1fr;gap:14px;align-items:start}@media(max-width:700px){.main{grid-template-columns:1fr}}
+h1{font-size:clamp(2.3rem,7vw,3.3rem);line-height:1.02;margin:.1em 0 .15em;letter-spacing:.02em;background:linear-gradient(90deg,#fff,var(--ac) 55%,var(--y));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.25rem;margin:.2em 0 .3em;letter-spacing:.03em}p{margin:.4em 0;max-width:70ch}.mu{color:var(--mu)}
+.eyebrow{font:600 .82rem "Barlow Condensed",sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--ac)}
+.orb{float:right;width:112px;height:112px;margin:0 0 6px 12px}
+.top{display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:center;padding:10px 16px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
+.top b{font:700 1.2rem "Barlow Condensed",sans-serif;letter-spacing:.03em}
+.bar{height:8px;background:var(--ln);border-radius:4px;overflow:hidden;width:110px;display:inline-block;vertical-align:middle}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--ac))}
+.prog{height:4px;background:var(--ln);border-radius:2px;margin:8px 2px 14px;overflow:hidden}.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--y))}
+.ban{padding:14px 18px;border:1px solid var(--bc);border-left:6px solid var(--bc);border-radius:14px;margin-bottom:10px;box-shadow:0 0 28px -10px var(--bc)}.ban .big{font-size:1.8rem;line-height:1.1;letter-spacing:.02em}
+.b0{--bc:var(--g);background:linear-gradient(90deg,var(--gb),transparent)}.b1{--bc:var(--y);background:linear-gradient(90deg,var(--yb),transparent)}.b2{--bc:var(--r);background:linear-gradient(90deg,var(--rb),transparent)}.b3{--bc:var(--mu);background:var(--glass)}
+.box{background:var(--glass);border:1px solid var(--ln);border-radius:14px;padding:12px 16px;margin-bottom:10px;backdrop-filter:blur(6px)}
+.box dl{margin:.3em 0;display:grid;grid-template-columns:auto 1fr;gap:3px 14px}.box dt{font-weight:600;color:var(--ac)}.box dd{margin:0}
+.tag{display:inline-block;font:600 .74rem "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:2px 10px;border-radius:99px;background:rgba(124,196,232,.14);color:var(--ac);margin-right:8px}
+.main{display:grid;grid-template-columns:240px 1fr;gap:14px;align-items:start}@media(max-width:700px){.main{grid-template-columns:1fr}}
+.main>div:first-child{background:var(--glass);border:1px solid var(--ln);border-radius:14px;padding:12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .c0{--c:var(--g)}.c1{--c:var(--y)}.c2{--c:var(--r)}.c3{--c:var(--mu)}
-.t{all:unset;box-sizing:border-box;cursor:pointer;background:var(--pn);border:2px solid var(--ln);border-radius:6px;padding:8px 12px;display:grid;grid-template-columns:1fr auto;gap:2px 8px}
-.t.on{border-color:var(--ac)}.t svg,.t .st{color:var(--c)}.t svg{grid-column:1/-1;width:100%;height:34px}
+.t{all:unset;box-sizing:border-box;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-top:3px solid var(--c);border-radius:14px;padding:9px 14px;display:grid;grid-template-columns:1fr auto;gap:3px 8px;transition:transform .15s,box-shadow .15s}
+.t:hover{transform:translateY(-2px);box-shadow:0 8px 22px -10px var(--c)}
+.t.on{border-left-color:var(--ac);border-right-color:var(--ac);border-bottom-color:var(--ac);box-shadow:0 0 0 1px var(--ac),0 0 24px -8px var(--ac)}
+.t svg{grid-column:1/-1;width:100%;height:36px;color:var(--c)}
 button:focus-visible,.t:focus-visible,.hs:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
-.nm{font-size:1.1rem}.vl{font:700 1.9rem/1 "Barlow Condensed",sans-serif;text-align:right}.vl small{font:400 .8rem Barlow;color:var(--mu);margin-left:3px}.st{font-weight:600;font-size:.88rem}
+.nm{font-size:1.1rem;letter-spacing:.02em}.vl{font:700 2.1rem/1 "Barlow Condensed",sans-serif;text-align:right;color:var(--c);text-shadow:0 0 14px var(--c)}.vl small{font:400 .8rem Barlow;color:var(--mu);margin-left:3px;text-shadow:none}
+.st{justify-self:start;font-weight:600;font-size:.8rem;padding:1px 10px;border-radius:99px;border:1px solid var(--c);color:var(--c);background:rgba(255,255,255,.04)}
 .act{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:8px 0}
-.a{font:600 1rem Barlow,sans-serif;text-align:left;cursor:pointer;background:var(--pn);color:var(--tx);border:2px solid var(--ln);border-radius:6px;padding:9px 12px}
-.a:hover:not(:disabled){border-color:var(--ac)}.a:disabled{opacity:.45;cursor:not-allowed}.a.sel{border-color:var(--ac);background:var(--gb)}.a span{display:block;font-weight:400;font-size:.85rem;color:var(--mu)}
-.go{font:700 1.05rem Barlow,sans-serif;background:var(--ac);color:var(--bg);border:0;border-radius:6px;padding:11px 20px;cursor:pointer;margin:8px 0}
+.a{font:600 1rem Barlow,sans-serif;text-align:left;cursor:pointer;background:var(--glass);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:10px 14px;transition:box-shadow .15s,border-color .15s}
+.a:hover:not(:disabled){border-color:var(--ac);box-shadow:0 0 18px -8px var(--ac)}.a:disabled{opacity:.4;cursor:not-allowed}.a.sel{border-color:var(--g);background:var(--gb);box-shadow:0 0 18px -8px var(--g)}.a span{display:block;font-weight:400;font-size:.85rem;color:var(--mu)}
+.go{font:700 1.05rem Barlow,sans-serif;letter-spacing:.02em;background:linear-gradient(135deg,var(--ac),#4aa0d4);color:#06141f;border:0;border-radius:12px;padding:11px 24px;cursor:pointer;margin:8px 0;box-shadow:0 6px 22px -6px var(--ac)}.go:hover:not(:disabled){filter:brightness(1.1)}.go:disabled{opacity:.6}
 .fig{width:100%;max-width:230px;margin:0 auto;display:block}.hs{cursor:pointer;color:var(--c)}
-@keyframes pu{50%{opacity:.35}}.pul{animation:pu 1s infinite}@media(prefers-reduced-motion:reduce){.pul{animation:none}}
-.fine{font-size:.82rem;color:var(--mu);margin-top:16px;border-top:1px solid var(--ln);padding-top:8px}
+@keyframes pu{50%{opacity:.35}}.pul{animation:pu 1s infinite}
+@keyframes sw{from{transform:translateY(8px)}to{transform:translateY(290px)}}.sweep{animation:sw .9s linear;filter:drop-shadow(0 0 6px #7CC4E8)}
+@media(prefers-reduced-motion:reduce){.pul,.sweep{animation:none}.t{transition:none}}
+.fine{font-size:.82rem;color:var(--mu);margin-top:18px;border-top:1px solid var(--ln);padding-top:10px}
 </style></head><body><div id="app"></div>
 <script>
 const $=s=>document.querySelector(s);
@@ -120,10 +136,10 @@ else if(n==1){d-=5;h=-4;m="Seguir sin actuar dejó que los indicadores amarillos
 else{d-=15;h=-12;m="Ignoraste una situación que requería escalar. La salud de la tripulación se deteriora."}}
 S.score+=d;S.health=cl(S.health+h,0,100);
 S.msg=`<b>${d>=0?"+":""}${d} puntos${h?" · salud "+h:""}.</b> ${m} Dormirás ${PL[S.plan].h} h esta noche.`;S.done=true;render()}
-function fig(L,sc){return `<svg class="fig" viewBox="0 0 200 300" role="group" aria-label="Figura humana con sensores"><circle cx="100" cy="42" r="24" fill="var(--pn)" stroke="var(--mu)" stroke-width="2"/><rect x="70" y="72" width="60" height="100" rx="18" fill="var(--pn)" stroke="var(--mu)" stroke-width="2"/><g stroke="var(--mu)" stroke-width="12" stroke-linecap="round" opacity=".45"><path d="M68 84L42 150M132 84L158 150M88 176L82 270M112 176L118 270"/></g>`+
+function fig(L,sc){return `<svg class="fig" viewBox="0 0 200 300" role="group" aria-label="Figura humana con sensores"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#35597a"/><stop offset="1" stop-color="#16293a"/></linearGradient><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7CC4E8" stop-opacity=".55"/><stop offset="1" stop-color="#0b1824"/></linearGradient></defs><g stroke="#4f7391" stroke-width="15" stroke-linecap="round" fill="none"><path d="M70 86L44 150M130 86L156 150M89 178L83 266M111 178L117 266"/></g><g stroke="url(#sg)" stroke-width="11" stroke-linecap="round" fill="none"><path d="M70 86L44 150M130 86L156 150M89 178L83 266M111 178L117 266"/></g><rect x="68" y="72" width="64" height="106" rx="20" fill="url(#sg)" stroke="#6f97b5" stroke-width="2"/><rect x="86" y="118" width="28" height="18" rx="4" fill="none" stroke="#6f97b5" stroke-opacity=".6"/><circle cx="100" cy="42" r="26" fill="url(#sg)" stroke="#6f97b5" stroke-width="2"/><ellipse cx="100" cy="44" rx="18" ry="15" fill="url(#vg)" stroke="#9fc6df" stroke-opacity=".6"/>`+
 IND.map((i,j)=>{const[x,y]=POS[i.k],c=sc?L[j]:3,lab=(i.k=="pa"||i.k=="sue")?[x,y+23,"middle"]:[x+13,y+4,"start"];
-return `<g class="hs c${c}${sc||S.scanning?"":" pul"}" tabindex="0" role="button" aria-label="${i.n}" onclick="pick('${i.k}')" onkeydown="if(event.key=='Enter')pick('${i.k}')"><circle cx="${x}" cy="${y}" r="9" fill="currentColor" stroke="var(--pn)" stroke-width="2"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--pn)">${sc?GL[c]:"?"}</text><text x="${lab[0]}" y="${lab[1]}" text-anchor="${lab[2]}" font-size="11" fill="var(--tx)">${{tmp:"T°",ani:"Ánimo",sue:"Sueño",fc:"FC",pa:"PA",glu:"Glu"}[i.k]}</text></g>`}).join("")+`</svg>`}
-function intro(){$("#app").innerHTML=`<h1>Bitácora Vital</h1><p class="mu">Juego de monitoreo de salud para una tripulación en tránsito a Marte. NASA Space Apps Challenge 2026: monitoreo de salud de astronautas.</p>
+return `<g class="hs c${c}${sc||S.scanning?"":" pul"}" tabindex="0" role="button" aria-label="${i.n}" onclick="pick('${i.k}')" onkeydown="if(event.key=='Enter')pick('${i.k}')"><circle cx="${x}" cy="${y}" r="15" fill="currentColor" opacity=".18"/><circle cx="${x}" cy="${y}" r="9" fill="currentColor" stroke="var(--pn)" stroke-width="2"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--pn)">${sc?GL[c]:"?"}</text><text x="${lab[0]}" y="${lab[1]}" text-anchor="${lab[2]}" font-size="11" fill="var(--tx)">${{tmp:"T°",ani:"Ánimo",sue:"Sueño",fc:"FC",pa:"PA",glu:"Glu"}[i.k]}</text></g>`}).join("")+(S.scanning?`<rect class="sweep" x="25" y="0" width="150" height="4" rx="2" fill="#7CC4E8"/>`:"")+`</svg>`}
+function intro(){$("#app").innerHTML=`<svg class="orb" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".35"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#8a3a22"/></radialGradient></defs><ellipse cx="60" cy="60" rx="56" ry="20" fill="none" stroke="#7CC4E8" stroke-opacity=".5" transform="rotate(-20 60 60)"/><circle cx="60" cy="60" r="26" fill="url(#mg)"/><circle cx="7" cy="79" r="4" fill="#E8F1F5"/></svg><div class="eyebrow">NASA Space Apps Challenge 2026 · Reto 04</div><h1>Bitácora Vital</h1><p class="mu">Juego de monitoreo de salud para una tripulación en tránsito a Marte. NASA Space Apps Challenge 2026: monitoreo de salud de astronautas.</p>
 <div class="box"><h2>Tu rol</h2><p>Eres el sistema de salud de la nave. Cada día (30 en total): <b>1)</b> escaneas al Cdte. Rivera (astronauta sintético) con los electrodos, <b>2)</b> lees seis indicadores y el radar predictivo, <b>3)</b> eliges su plan de descanso y <b>4)</b> decides qué hacer.</p>
 <p><b>Verde</b> (✓) rutina. <b>Amarillo</b> (!) guía de acción. <b>Rojo</b> (✕), o tres amarillos a la vez: escalar al cirujano de vuelo en Tierra. Solo tienes <b>5 ventanas de comunicación</b> en toda la misión.</p>
 <p>Dormir poco rinde más tareas hoy, pero acumula deuda de sueño y el cuerpo lo paga después: sube la frecuencia cardíaca, la presión y la glucosa, y baja el ánimo. Toca la figura humana para ver cada indicador.</p></div>
@@ -144,9 +160,9 @@ const ctl=!sc?`<button class="go" ${S.scanning?"disabled":""} onclick="scan()">$
 S.done?`<div class="box">${S.msg}</div><button class="go" onclick="newDay()">${S.day>=N?"Ver resultado":"Siguiente día"}</button>`:
 `<h2>Plan de descanso de esta noche</h2><div class="act">${PL.map((p,j)=>`<button class="a${S.plan==j?" sel":""}" onclick="setPlan(${j})">${p.t} · ${p.h} h<span>Tareas de misión +${p.p}</span></button>`).join("")}</div>
 <h2>¿Qué haces hoy?</h2><div class="act">${adv.map((a,j)=>`<button class="a" ${j==2&&S.win<1?"disabled":""} onclick="act(${j})">${a[0]}<span>${a[1]}</span></button>`).join("")}</div>`;
-$("#app").innerHTML=`<div class="top"><b>Día ${Math.min(S.day,N)} de ${N} · Cdte. Rivera (sintético)</b><span>Puntos <b>${S.score}</b></span><span>Salud <span class="bar"><i style="width:${S.health}%"></i></span> ${S.health}</span><span>Ventanas <b>${S.win}</b></span></div>
+$("#app").innerHTML=`<div class="top"><b>Día ${Math.min(S.day,N)} de ${N} · Cdte. Rivera (sintético)</b><span>Puntos <b>${S.score}</b></span><span>Salud <span class="bar"><i style="width:${S.health}%"></i></span> ${S.health}</span><span>Ventanas <b>${S.win}</b></span></div><div class="prog"><i style="width:${Math.min(S.day,N)/N*100}%"></i></div>
 <div class="ban b${n}"><div class="big">${sc?SH[n]+" ":""}${st}</div></div>
-<div class="box"><b>${S.ev.t}</b> <span class="mu">· ${S.ev.h}</span><br>${S.ev.x}</div>
+<div class="box"><span class="tag">${S.ev.h}</span><b>${S.ev.t}</b><br>${S.ev.x}</div>
 <div class="main"><div>${fig(L,sc)}<p class="mu" style="text-align:center;font-size:.85rem">Toca un sensor</p></div>
 <div class="grid">${IND.map((x,j)=>sc?`<button class="t c${L[j]}${S.sel==x.k?" on":""}" onclick="pick('${x.k}')"><span class="nm">${x.n}</span><span class="vl">${fmt(x,S.cur[x.k])}<small>${x.u}</small></span><span class="st">${SH[L[j]]} ${LB[L[j]]}</span><span></span>${spark(x,P?P[x.k]:[])}</button>`:`<button class="t c3${S.sel==x.k?" on":""}" onclick="pick('${x.k}')"><span class="nm">${x.n}</span><span class="vl">—<small>${x.u}</small></span><span class="st">Sin escanear</span><span></span></button>`).join("")}</div></div>
 <div class="box" style="margin-top:10px"><h2>${i.n}</h2><dl><dt>Por qué cambia</dt><dd>${i.why}</dd><dt>Rango normal</dt><dd>${i.g[0]}–${i.g[1]} ${i.u}</dd><dt>Guía de acción</dt><dd>${i.guide}</dd><dt>Fuente</dt><dd>${i.src}</dd></dl></div>
