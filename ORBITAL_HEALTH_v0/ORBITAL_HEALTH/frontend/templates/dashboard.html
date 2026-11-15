@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORBITAL HEALTH | Mission Control</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">O</div>
+            <div>
+                <h2>ORBITAL</h2>
+                <span>HEALTH SYSTEM</span>
+            </div>
+        </div>
+
+        <div class="nav-label">MISSION CONTROL</div>
+
+        <nav>
+            <a class="nav-item active" href="#overview">Dashboard</a>
+            <a class="nav-item" href="#biometrics">Biometrics</a>
+            <a class="nav-item" href="#analytics">Analytics</a>
+            <a class="nav-item" href="#alerts">Alerts</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <span class="online-dot"></span>
+            <span>LOCAL SERVER</span>
+            <small id="connection-state">Connecting...</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">NASA SPACE HEALTH MONITORING</span>
+                <h1>Mission Overview</h1>
+            </div>
+
+            <div class="mission-info">
+                <span>MISSION 142</span>
+                <strong id="mission-clock">--:--:--</strong>
+            </div>
+        </header>
+
+        <section class="mission-banner" id="overview">
+            <div>
+                <span class="eyebrow">CREW HEALTH INTELLIGENCE</span>
+                <h2>Human Health Monitoring System</h2>
+                <p>Real-time biometric telemetry and health intelligence.</p>
+            </div>
+
+            <div class="mission-status">
+                <span class="status-indicator" id="overall-dot"></span>
+                <div>
+                    <strong id="overall-status">NO DATA</strong>
+                    <small>OVERALL HEALTH STATUS</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-heading">
+            <div>
+                <span class="eyebrow">LIVE TELEMETRY</span>
+                <h2>Biometric indicators</h2>
+            </div>
+            <span class="live-label">● LIVE</span>
+        </section>
+
+        <section class="metrics-grid" id="biometrics">
+
+            <article class="metric-card">
+                <span class="metric-name">HEART RATE</span>
+                <div class="metric-value">
+                    <strong id="heart-rate">--</strong>
+                    <span>bpm</span>
+                </div>
+                <div class="metric-status" id="heart-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">OXYGEN SATURATION</span>
+                <div class="metric-value">
+                    <strong id="spo2">--</strong>
+                    <span>%</span>
+                </div>
+                <div class="metric-status" id="spo2-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">BODY TEMPERATURE</span>
+                <div class="metric-value">
+                    <strong id="temperature">--</strong>
+                    <span>°C</span>
+                </div>
+                <div class="metric-status" id="temperature-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">SLEEP DURATION</span>
+                <div class="metric-value">
+                    <strong id="sleep">--</strong>
+                    <span>hrs</span>
+                </div>
+                <div class="metric-status" id="sleep-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">BLOOD PRESSURE</span>
+                <div class="metric-value">
+                    <strong id="pressure">--/--</strong>
+                    <span>mmHg</span>
+                </div>
+                <div class="metric-status" id="pressure-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">BLOOD GLUCOSE</span>
+                <div class="metric-value">
+                    <strong id="glucose">--</strong>
+                    <span>mg/dL</span>
+                </div>
+                <div class="metric-status" id="glucose-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">MOOD SCORE</span>
+                <div class="metric-value">
+                    <strong id="mood">--</strong>
+                    <span>/10</span>
+                </div>
+                <div class="metric-status" id="mood-status">UNAVAILABLE</div>
+            </article>
+
+        </section>
+
+        <section class="analytics-section" id="analytics">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">BIOMETRIC ANALYSIS</span>
+                    <h2>Telemetry history</h2>
+                </div>
+            </div>
+
+            <article class="chart-card">
+                <div class="chart-heading">
+                    <h3>Heart rate evolution</h3>
+                    <span>bpm</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="heart-chart"></canvas>
+                </div>
+            </article>
+
+            <article class="chart-card">
+                <div class="chart-heading">
+                    <h3>Oxygen saturation</h3>
+                    <span>%</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="spo2-chart"></canvas>
+                </div>
+            </article>
+
+            <article class="chart-card">
+                <div class="chart-heading">
+                    <h3>Body temperature</h3>
+                    <span>°C</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="temperature-chart"></canvas>
+                </div>
+            </article>
+        </section>
+
+        <section class="bottom-grid">
+
+            <article class="panel" id="alerts">
+                <span class="eyebrow">HEALTH INTELLIGENCE</span>
+                <h2>System alerts</h2>
+                <div id="alert-list">
+                    <p class="empty-state">Waiting for telemetry...</p>
+                </div>
+            </article>
+
+            <article class="panel">
+                <span class="eyebrow">DEVICE INFORMATION</span>
+                <h2>ESP32 connection</h2>
+
+                <div class="device-row">
+                    <span>Device ID</span>
+                    <strong id="device-id">NOT CONNECTED</strong>
+                </div>
+
+                <div class="device-row">
+                    <span>Connection</span>
+                    <strong id="device-state">OFFLINE</strong>
+                </div>
+
+                <div class="device-row">
+                    <span>Last measurement</span>
+                    <strong id="last-update">--</strong>
+                </div>
+
+                <div class="device-row">
+                    <span>Total measurements</span>
+                    <strong id="total-measurements">0</strong>
+                </div>
+            </article>
+
+        </section>
+
+        <footer>
+            ORBITAL HEALTH · CREW HEALTH INTELLIGENCE SYSTEM
+            <span>Experimental monitoring platform · Not a medical device</span>
+        </footer>
+
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>
