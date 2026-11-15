@@ -6,33 +6,33 @@
 <meta name="description" content="Juego de monitoreo de salud de astronautas. NASA Space Apps Challenge 2026.">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#070f17;--pn:#0f2233;--glass:rgba(10,24,38,.62);--tx:#E8F1F5;--mu:#8FA9B6;--ln:rgba(124,196,232,.25);--g:#4CD0A0;--y:#F2B63C;--r:#FF6B6B;--ac:#7CC4E8;--gb:rgba(76,208,160,.18);--yb:rgba(242,182,60,.18);--rb:rgba(255,107,107,.2)}
+:root{color-scheme:dark;--bg:#070f17;--pn:#0f2233;--glass:rgba(16,38,56,.68);--tx:#E8F1F5;--mu:#8FA9B6;--ln:rgba(124,196,232,.2);--g:#4CD0A0;--y:#F2B63C;--r:#FF6B6B;--ac:#7CC4E8;--gb:rgba(76,208,160,.13);--yb:rgba(242,182,60,.13);--rb:rgba(255,107,107,.15)}
 *{box-sizing:border-box}
-body{margin:0;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);min-height:100vh;color:var(--tx);font:16px/1.5 Barlow,system-ui,sans-serif;background:linear-gradient(rgba(7,15,23,0.55),rgba(7,15,23,0.75)),url('ORBITAL.jpg') no-repeat center center fixed;background-size:cover;overflow-x:hidden}
-#app{max-width:980px;margin:0 auto;padding:18px 16px 28px;position:relative}
+body{margin:0;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);min-height:100vh;color:var(--tx);font:16px/1.5 Barlow,system-ui,sans-serif;background:radial-gradient(900px 500px at 85% -5%,rgba(40,90,140,.38),transparent 70%),radial-gradient(800px 500px at 5% 105%,rgba(170,70,40,.26),transparent 70%),radial-gradient(1.2px 1.2px at 12% 18%,#fff9,transparent),radial-gradient(1px 1px at 34% 72%,#fff7,transparent),radial-gradient(1.4px 1.4px at 58% 30%,#fffa,transparent),radial-gradient(1px 1px at 79% 62%,#fff8,transparent),radial-gradient(1.2px 1.2px at 91% 14%,#fff9,transparent),radial-gradient(1px 1px at 46% 90%,#fff6,transparent),var(--bg);background-size:100% 100%,100% 100%,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px}
+#app{max-width:980px;margin:0 auto;padding:18px 16px 28px}
 h1,h2,.nm,.big{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:700}
 h1{font-size:clamp(2.3rem,7vw,3.3rem);line-height:1.02;margin:.1em 0 .15em;letter-spacing:.02em;background:linear-gradient(90deg,#fff,var(--ac) 55%,var(--y));-webkit-background-clip:text;background-clip:text;color:transparent}
 h2{font-size:1.25rem;margin:.2em 0 .3em;letter-spacing:.03em}p{margin:.4em 0;max-width:70ch}.mu{color:var(--mu)}
 .eyebrow{font:600 .82rem "Barlow Condensed",sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--ac)}
 .orb{float:right;width:112px;height:112px;margin:0 0 6px 12px}
 .bar{height:8px;background:var(--ln);border-radius:4px;overflow:hidden;width:110px;display:inline-block;vertical-align:middle}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--ac))}
-.ban{padding:14px 18px;border:1px solid var(--bc);border-left:6px solid var(--bc);border-radius:14px;margin-bottom:10px;box-shadow:0 0 28px -10px var(--bc);backdrop-filter:blur(6px)}.ban .big{font-size:1.8rem;line-height:1.1;letter-spacing:.02em}
-.b0{--bc:var(--g);background:linear-gradient(90deg,var(--gb),rgba(10,24,38,.7))}.b1{--bc:var(--y);background:linear-gradient(90deg,var(--yb),rgba(10,24,38,.7))}.b2{--bc:var(--r);background:linear-gradient(90deg,var(--rb),rgba(10,24,38,.7))}.b3{--bc:var(--mu);background:var(--glass)}
-.box{background:var(--glass);border:1px solid var(--ln);border-radius:14px;padding:12px 16px;margin-bottom:10px;backdrop-filter:blur(8px)}
+.ban{padding:14px 18px;border:1px solid var(--bc);border-left:6px solid var(--bc);border-radius:14px;margin-bottom:10px;box-shadow:0 0 28px -10px var(--bc)}.ban .big{font-size:1.8rem;line-height:1.1;letter-spacing:.02em}
+.b0{--bc:var(--g);background:linear-gradient(90deg,var(--gb),transparent)}.b1{--bc:var(--y);background:linear-gradient(90deg,var(--yb),transparent)}.b2{--bc:var(--r);background:linear-gradient(90deg,var(--rb),transparent)}.b3{--bc:var(--mu);background:var(--glass)}
+.box{background:var(--glass);border:1px solid var(--ln);border-radius:14px;padding:12px 16px;margin-bottom:10px;backdrop-filter:blur(6px)}
 .box dl{margin:.3em 0;display:grid;grid-template-columns:auto 1fr;gap:3px 14px}.box dt{font-weight:600;color:var(--ac)}.box dd{margin:0}
-.tag{display:inline-block;font:600 .74rem "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:2px 10px;border-radius:99px;background:rgba(124,196,232,.18);color:var(--ac);margin-right:8px}
+.tag{display:inline-block;font:600 .74rem "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:2px 10px;border-radius:99px;background:rgba(124,196,232,.14);color:var(--ac);margin-right:8px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .c0{--c:var(--g)}.c1{--c:var(--y)}.c2{--c:var(--r)}.c3{--c:var(--mu)}
-.t{all:unset;box-sizing:border-box;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-top:3px solid var(--c);border-radius:14px;padding:9px 14px;display:grid;grid-template-columns:1fr auto;gap:3px 8px;transition:transform .15s,box-shadow .15s;backdrop-filter:blur(8px)}
+.t{all:unset;box-sizing:border-box;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-top:3px solid var(--c);border-radius:14px;padding:9px 14px;display:grid;grid-template-columns:1fr auto;gap:3px 8px;transition:transform .15s,box-shadow .15s}
 .t:hover{transform:translateY(-2px);box-shadow:0 8px 22px -10px var(--c)}
 .t.on{border-left-color:var(--ac);border-right-color:var(--ac);border-bottom-color:var(--ac);box-shadow:0 0 0 1px var(--ac),0 0 24px -8px var(--ac)}
 .t svg{grid-column:1/-1;width:100%;height:36px;color:var(--c)}
 button:focus-visible,.t:focus-visible,.hs:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 .nm{font-size:1.1rem;letter-spacing:.02em}.vl{font:700 2.1rem/1 "Barlow Condensed",sans-serif;text-align:right;color:var(--c);text-shadow:0 0 14px var(--c)}.vl small{font:400 .8rem Barlow;color:var(--mu);margin-left:3px;text-shadow:none}
-.st{justify-self:start;font-weight:600;font-size:.8rem;padding:1px 10px;border-radius:99px;border:1px solid var(--c);color:var(--c);background:rgba(255,255,255,.06)}
-.a{font:600 1rem Barlow,sans-serif;text-align:left;cursor:pointer;background:var(--glass);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:10px 14px;transition:box-shadow .15s,border-color .15s;backdrop-filter:blur(8px)}
+.st{justify-self:start;font-weight:600;font-size:.8rem;padding:1px 10px;border-radius:99px;border:1px solid var(--c);color:var(--c);background:rgba(255,255,255,.04)}
+.a{font:600 1rem Barlow,sans-serif;text-align:left;cursor:pointer;background:var(--glass);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:10px 14px;transition:box-shadow .15s,border-color .15s}
 .a:hover:not(:disabled){border-color:var(--ac);box-shadow:0 0 18px -8px var(--ac)}.a:disabled{opacity:.4;cursor:not-allowed}.a.sel{border-color:var(--g);background:var(--gb);box-shadow:0 0 18px -8px var(--g)}.a span{display:block;font-weight:400;font-size:.85rem;color:var(--mu)}
-.go{font:700 1.05rem Barlow,sans-serif;letter-spacing:.02em;background:linear-gradient(135deg,var(--ac),#4aa0d4);color:#06141f;border:0;border-radius:12px;padding:11px 24px;cursor:pointer;margin:8px 0;box-shadow:0 6px 22px -6px var(--ac);position:relative;z-index:2}.go:hover:not(:disabled){filter:brightness(1.1)}.go:disabled{opacity:.6}
+.go{font:700 1.05rem Barlow,sans-serif;letter-spacing:.02em;background:linear-gradient(135deg,var(--ac),#4aa0d4);color:#06141f;border:0;border-radius:12px;padding:11px 24px;cursor:pointer;margin:8px 0;box-shadow:0 6px 22px -6px var(--ac)}.go:hover:not(:disabled){filter:brightness(1.1)}.go:disabled{opacity:.6}
 .fig{width:100%;max-width:230px;margin:0 auto;display:block}.hs{cursor:pointer;color:var(--c)}
 @keyframes pu{50%{opacity:.35}}.pul{animation:pu 1s infinite}
 @keyframes sw{from{transform:translateY(8px)}to{transform:translateY(290px)}}.sweep{animation:sw .9s linear;filter:drop-shadow(0 0 6px #7CC4E8)}
@@ -43,29 +43,46 @@ button:focus-visible,.t:focus-visible,.hs:focus-visible{outline:3px solid var(--
 .rules li{position:relative;padding-left:1.3rem;counter-increment:steps}
 .rules li::before{content:counter(steps) ")";position:absolute;left:0;top:0;color:var(--ac);font:700 1rem "Barlow Condensed",sans-serif}
 .rule-title{margin-top:1rem!important;font-weight:700;color:var(--ac)}
-.charge-rule{padding:10px 14px!important;border-left:3px solid var(--y);border-radius:0 8px 8px 0;background:var(--yb);max-width:100%}
+.charge-rule{padding:9px 12px!important;border-left:3px solid var(--y);border-radius:0 8px 8px 0;background:var(--yb)}
 
-.intro-container{max-width:620px;margin:0;position:relative;z-index:1}
-.intro-card{width:100%;margin-top:14px;position:relative;overflow:hidden}
+/* ===== Pantalla de inicio ===== */
+.intro-card{width:100%}
+.intro-card p,.charge-rule{max-width:none}
+body.home::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(rgba(7,15,23,.45),rgba(7,15,23,.8)),url('ORBITAL.jpg') center/cover no-repeat}
+.home-wrap{display:grid;grid-template-columns:minmax(0,620px) 1fr;gap:20px;align-items:center}
+.home-wrap .box{background:rgba(10,24,38,.78);backdrop-filter:blur(8px)}
+.station{width:100%;max-width:420px;justify-self:center;animation:fl 8s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-10px) rotate(1deg)}}
+@media(max-width:900px){.home-wrap{grid-template-columns:1fr}.station{max-width:300px;order:-1}}
+@media(prefers-reduced-motion:reduce){.station{animation:none}}
 
+/* ===== Juego ===== */
 .hud{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
 .hud .it{display:flex;align-items:center;gap:8px;white-space:nowrap}.hud small{color:var(--mu);text-transform:uppercase;letter-spacing:.12em;font:600 .72rem "Barlow Condensed",sans-serif}.hud b{font:700 1.2rem "Barlow Condensed",sans-serif}
 .bar.fat i{background:linear-gradient(90deg,var(--y),var(--r))}
-.cols{display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1.5fr) minmax(240px,1fr);gap:10px;min-height:0;align-items:start}.cols>section{min-height:0;overflow:visible;padding:2px}
-.figcol{display:flex;flex-direction:column;gap:8px;min-height:0}.figbox{flex:none;aspect-ratio:7/10;min-width:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(110% 65% at 50% 10%,rgba(52,126,161,.42),transparent 62%),linear-gradient(180deg,rgba(12,45,67,.85),rgba(5,19,32,.9));border:1px solid var(--ln);border-radius:14px;padding:6px;overflow:hidden;backdrop-filter:blur(6px)}
+.cols{display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.5fr) minmax(240px,1fr);gap:10px;min-height:0;align-items:start}.cols>section{min-height:0;overflow:visible;padding:2px}
+.figcol{display:flex;flex-direction:column;gap:8px;min-height:0}.figbox{flex:none;aspect-ratio:7/10;min-width:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(110% 65% at 50% 10%,rgba(52,126,161,.42),transparent 62%),linear-gradient(180deg,rgba(12,45,67,.96),rgba(5,19,32,.98));border:1px solid var(--ln);border-radius:14px;padding:6px;overflow:hidden}
 .dash .fig{width:auto;max-width:108%;height:100%;max-height:100%;margin:0;filter:drop-shadow(0 8px 12px rgba(0,0,0,.32))}
-.elec{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;width:auto;background:rgba(10,28,42,.85);border:1px solid rgba(124,196,232,.55);border-radius:14px;padding:8px 10px;text-align:left;box-shadow:0 10px 26px rgba(0,0,0,.28);backdrop-filter:blur(8px)}
+.elec{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;width:auto;background:rgba(10,28,42,.9);border:1px solid rgba(124,196,232,.55);border-radius:14px;padding:8px 10px;text-align:left;box-shadow:0 10px 26px rgba(0,0,0,.28);backdrop-filter:blur(8px)}
 .elec small{color:var(--ac);text-transform:uppercase;letter-spacing:.14em;font:600 .72rem "Barlow Condensed",sans-serif}.elec .es{font-size:.8rem;min-height:0;margin:0}.elec .go{width:auto;margin:0;padding:8px 14px}.elec p{display:none}
 .mission-panel{scrollbar-width:none;-ms-overflow-style:none}.mission-panel::-webkit-scrollbar{display:none}
 .dash .ban{padding:7px 12px;margin-bottom:8px}.dash .ban .big{font-size:1.3rem}.dash .box{padding:8px 12px;margin-bottom:8px}.dash .det{font-size:.82rem}.dash h2{font-size:1.05rem;margin:4px 0}
 .dash .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:8px}.dash .t{padding:6px 10px}.dash .vl{font-size:1.6rem}.dash .nm{font-size:.95rem}.dash .t svg{height:24px}
-.ms{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-radius:12px;padding:7px 12px;margin-bottom:7px;backdrop-filter:blur(8px)}
-.ms b{display:block;font-size:.95rem}.ms .mu{display:block;font-size:.78rem}.ms.on{border-color:var(--ac);box-shadow:0 0 16px -8px var(--ac)}.ms.ok{border-color:var(--g);opacity:.85}.ms.ko{border-color:var(--r);opacity:.7}
+.ms{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-radius:12px;padding:7px 12px;margin-bottom:7px}
+.ms b{display:block;font-size:.95rem}.ms .mu{display:block;font-size:.78rem}.ms.on{border-color:var(--ac);box-shadow:0 0 16px -8px var(--ac)}.ms.ok{border-color:var(--g);opacity:.75}.ms.ko{border-color:var(--r);opacity:.6}
 .pb{display:block;height:5px;background:var(--ln);border-radius:3px;overflow:hidden;margin-top:5px}.pb i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--g))}
 .dock{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:end;padding:8px 12px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
 .dg small{display:block;color:var(--mu);text-transform:uppercase;letter-spacing:.1em;font:600 .72rem "Barlow Condensed",sans-serif;margin-bottom:3px}.row{display:flex;flex-wrap:wrap;gap:8px}
 .dock .a{padding:6px 12px;font-size:.9rem}.dock .a span{font-size:.75rem}.dock .go{margin:0;padding:9px 22px}
-@media(max-width:900px){#app.dash{height:auto;min-height:100vh;display:block}.hud{position:sticky;top:0;z-index:5;background:rgba(10,24,36,.88);backdrop-filter:blur(8px)}.cols{display:block;margin:10px 0}.cols>section{margin-bottom:10px;overflow:visible}.figcol{display:block;min-height:0}.figbox{display:block;min-height:440px}.elec{margin-top:8px;gap:8px}.elec .go{padding:8px 12px}.dock{grid-template-columns:1fr;position:sticky;bottom:0;z-index:5;background:rgba(10,24,36,.92);backdrop-filter:blur(8px)}.dash .fig{width:108%;max-width:108%;height:auto;max-height:60vh;margin-left:-4%}}
+body:has(#app.dash){overflow:hidden}
+#app.dash{max-width:none;width:100%;height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column;gap:10px;padding:12px 16px}
+#app.dash .hud,#app.dash .dock{flex:none}
+#app.dash .cols{flex:1;min-height:0;align-items:stretch}
+#app.dash .cols>section{overflow:hidden;display:flex;flex-direction:column;min-height:0}
+#app.dash .figbox{flex:1;aspect-ratio:auto;min-height:0}
+#app.dash .mlist{flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:7px}
+#app.dash .mlist .ms{flex:1 1 0;min-height:0;max-height:112px;margin:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+@media(max-width:900px){body:has(#app.dash){overflow:auto}#app.dash{height:auto;min-height:100vh;overflow:visible;display:block}#app.dash .cols>section{overflow:visible;display:block}#app.dash .figbox{flex:none}#app.dash .mlist{display:block}#app.dash .mlist .ms{display:block;max-height:none;margin-bottom:7px}.hud{position:sticky;top:0;z-index:5;background:rgba(10,24,36,.92)}.cols{display:block;margin:10px 0}.cols>section{margin-bottom:10px;overflow:visible}.figcol{display:block;min-height:0}.figbox{display:block;min-height:440px}.elec{margin-top:8px;gap:8px}.elec .go{padding:8px 12px}.dock{grid-template-columns:1fr;position:sticky;bottom:0;z-index:5;background:rgba(10,24,36,.94)}.dash .fig{width:108%;max-width:108%;height:auto;max-height:60vh;margin-left:-4%}}
 </style></head><body><div id="app"></div>
 <script>
 const $=s=>document.querySelector(s);
@@ -102,6 +119,7 @@ const fmt=(i,v)=>i.dc?v.toFixed(1):Math.round(v);
 let S;
 
 function init(){
+  document.body.classList.remove("home");
   S={ms:MIS.map(m=>({...m,p:0,done:false,failed:false})),msel:0,pend:{},alert:"",phase:"",day:0,score:0,health:100,cores:5,debt:0,adj:{},hist:{},cur:{},plan:1,sleepPlan:7.5,sel:"sue",scanned:false,scanning:false,done:false,msg:"",ev:null,first:null};
   IND.forEach(i=>{S.adj[i.k]=0;S.hist[i.k]=[]});
   newDay();
@@ -268,30 +286,16 @@ function fig(L,sc){
   (S.scanning?`<g mask="url(#scan-mask)"><rect class="sweep" x="0" y="-30" width="200" height="30" fill="url(#sb)"/></g><rect class="sweep" x="25" y="0" width="150" height="3" rx="1.5" fill="#bfe6fa"/>`:"")+`</svg>`;
 }
 
+const STATION=`<svg class="station" viewBox="0 0 400 220" aria-hidden="true"><defs><linearGradient id="sp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f78a8"/><stop offset="1" stop-color="#123a57"/></linearGradient><linearGradient id="hl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f8fa"/><stop offset="1" stop-color="#9fb4c0"/></linearGradient></defs>
+<g stroke="#7CC4E8" stroke-opacity=".7" fill="url(#sp)"><rect x="8" y="14" width="96" height="62"/><rect x="296" y="14" width="96" height="62"/><rect x="8" y="144" width="96" height="62"/><rect x="296" y="144" width="96" height="62"/></g>
+<g stroke="#7CC4E8" stroke-opacity=".5" fill="none"><path d="M40 14v62M72 14v62M8 45h96M328 14v62M360 14v62M296 45h96M40 144v62M72 144v62M8 175h96M328 144v62M360 144v62M296 175h96"/></g>
+<g fill="#9fb4c0"><rect x="54" y="76" width="4" height="68"/><rect x="342" y="76" width="4" height="68"/><rect x="104" y="108" width="192" height="4"/></g>
+<rect x="150" y="84" width="100" height="52" rx="16" fill="url(#hl)"/><rect x="178" y="62" width="44" height="26" rx="10" fill="url(#hl)"/><circle cx="200" cy="54" r="11" fill="#7CC4E8" opacity=".85"/><rect x="196" y="136" width="8" height="34" fill="#9fb4c0"/><rect x="186" y="168" width="28" height="8" rx="3" fill="#F2B63C"/><circle cx="170" cy="110" r="4" fill="#4CD0A0"/></svg>`;
+
 function intro(){
+  document.body.classList.add("home");
   $("#app").className="";
-  $("#app").innerHTML=`
-  <div class="intro-container">
-    <svg class="orb" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".35"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#8a3a22"/></radialGradient></defs><ellipse cx="60" cy="60" rx="56" ry="20" fill="none" stroke="#7CC4E8" stroke-opacity=".5" transform="rotate(-20 60 60)"/><circle cx="60" cy="60" r="26" fill="url(#mg)"/><circle cx="7" cy="79" r="4" fill="#E8F1F5"/></svg>
-    <div class="eyebrow">NASA Space Apps Challenge 2026 · Reto 04</div>
-    <h1>Bitácora Vital</h1>
-    <p class="mu">Juego de monitoreo para una tripulación en tránsito a Marte. NASA Space Apps Challenge 2026: seguimiento de astronautas.</p>
-    <div class="box intro-card">
-      <h2>Tu rol</h2>
-      <p>Eres el tripulante a cargo del sistema de soporte de la nave. Cada día tiene cuatro pasos:</p>
-      <ol class="rules">
-        <li>Escanea al astronauta sintético con los electrodos.</li>
-        <li>Lee los seis indicadores y el radar predictivo.</li>
-        <li>Elige el turno de hoy: trabajo o descanso.</li>
-        <li>Decide qué protocolo ejecutar.</li>
-      </ol>
-      <p class="rule-title">Reglas de decisión</p>
-      <p><b>Verde</b> (✓): rutina. <b>Amarillo</b> (!): guía de acción. <b>Rojo</b> (✕), o tres amarillos a la vez: activa el <b>protocolo autónomo</b>.</p>
-      <p class="charge-rule"><b>Solo tienes 5 cargas de estabilización</b> en toda la misión; el sistema las ejecuta sin apoyo desde la Tierra.</p>
-      <p>Tienes <b>5 misiones fijas</b> con fecha límite. Toca la figura humana para ver cada indicador.</p>
-    </div>
-    <button class="go" onclick="init()">Iniciar misión</button>
-  </div>`;
+  $("#app").innerHTML=`<div class="home-wrap"><div class="intro-container"><svg class="orb" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".35"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#8a3a22"/></radialGradient></defs><ellipse cx="60" cy="60" rx="56" ry="20" fill="none" stroke="#7CC4E8" stroke-opacity=".5" transform="rotate(-20 60 60)"/><circle cx="60" cy="60" r="26" fill="url(#mg)"/><circle cx="7" cy="79" r="4" fill="#E8F1F5"/></svg><div class="eyebrow">NASA Space Apps Challenge 2026 · Reto 04</div><h1>Bitácora Vital</h1><p class="mu">Juego de monitoreo para una tripulación en tránsito a Marte. NASA Space Apps Challenge 2026: seguimiento de astronautas.</p><div class="box intro-card"><h2>Tu rol</h2><p>Eres el tripulante a cargo del sistema de soporte de la nave. Cada día tiene cuatro pasos:</p><ol class="rules"><li>Escanea al Cdte. Rivera (astronauta sintético) con los electrodos.</li><li>Lee los seis indicadores y el radar predictivo.</li><li>Elige el turno de hoy: trabajo o descanso.</li><li>Decide qué protocolo ejecutar.</li></ol><p class="rule-title">Reglas de decisión</p><p><b>Verde</b> (✓): rutina. <b>Amarillo</b> (!): guía de acción. <b>Rojo</b> (✕), o tres amarillos a la vez: activa el <b>protocolo autónomo</b>.</p><p class="charge-rule"><b>Solo tienes 5 cargas de estabilización</b> en toda la misión; el sistema las ejecuta sin apoyo desde la Tierra.</p><p>Tienes <b>5 misiones fijas</b> con fecha límite. Toca la figura humana para ver cada indicador.</p></div><button class="go" onclick="init()">Iniciar misión</button></div>${STATION}</div>`;
 }
 
 function grade(){
@@ -333,7 +337,7 @@ function render(){
 
   const dock=S.done?`<button class="go" onclick="newDay()">${S.day>=N?"Ver resultado":"Siguiente día →"}</button><span class="mu">Turno elegido: ${PL[S.plan].t}</span>`:`<div class="dg"><small>Turno de hoy · misión activa: ${am?am.n:"ninguna"}</small><div class="row">${PL.map((p,j)=>`<button class="a${S.plan==j?" sel":""}" onclick="setPlan(${j})">${p.t} · ${p.h} h<span>Trabajo +${p.u}</span></button>`).join("")}</div></div><div class="dg"><small>Acción del día${sc?"":" (escanea primero)"}</small><div class="row">${adv.map((a,j)=>`<button class="a" ${j==2&&S.cores<1?"disabled":dis} onclick="act(${j})">${a[0]}<span>${a[1]}</span></button>`).join("")}</div></div>`;
 
-  $("#app").innerHTML=`<div class="hud"><div class="it"><small>Día</small><b>${Math.min(S.day,N)}/${N}</b></div><div class="it"><small>Puntos</small><b>${S.score}</b></div><div class="it"><small>Salud</small><span class="bar"><i style="width:${S.health}%"></i></span><b>${S.health}</b></div><div class="it"><small>Cansancio</small><span class="bar fat"><i style="width:${fat}%"></i></span><b>${fat}%</b></div><div class="it"><small>Cargas</small><b>${S.cores}</b></div><div class="it"><small>Misiones</small><b>${dn}/${S.ms.length}</b></div></div><div class="cols"><section class="figcol"><div class="figbox">${fig(L,sc)}</div><div class="elec"><small>Electrodos</small><div class="es">${S.scanning?S.phase:sc?"Escaneo completo ✓":"Listos"}</div><button class="go" ${S.scanning||sc?"disabled":""} onclick="scan()">${S.scanning?"…":sc?"Hecho":"Escanear"}</button></div></section><section><div class="ban b${n}"><div class="big">${sc?SH[n]+" ":""}${st}</div></div>${rd}<div class="grid">${tiles}</div><div class="box det"><b>${i.n}</b><dl><dt>Por qué cambia</dt><dd>${i.why}</dd><dt>Rango normal</dt><dd>${i.g[0]}–${i.g[1]} ${i.u}</dd><dt>Guía</dt><dd>${i.guide}</dd><dt>Fuente</dt><dd>${i.src}</dd></dl></div></section><section class="mission-panel">${S.alert?`<div class="ban b2">${S.alert}</div>`:""}<div class="box"><span class="tag">${S.ev.h}</span><b>${S.ev.t}</b><br>${S.ev.x}</div>${S.done?`<div class="box">${S.msg}</div>`:""}<h2>Misiones</h2>${mis}</section></div><div class="dock">${dock}</div>`;
+  $("#app").innerHTML=`<div class="hud"><div class="it"><small>Día</small><b>${Math.min(S.day,N)}/${N}</b></div><div class="it"><small>Puntos</small><b>${S.score}</b></div><div class="it"><small>Salud</small><span class="bar"><i style="width:${S.health}%"></i></span><b>${S.health}</b></div><div class="it"><small>Cansancio</small><span class="bar fat"><i style="width:${fat}%"></i></span><b>${fat}%</b></div><div class="it"><small>Cargas</small><b>${S.cores}</b></div><div class="it"><small>Misiones</small><b>${dn}/${S.ms.length}</b></div></div><div class="cols"><section class="figcol"><div class="figbox">${fig(L,sc)}</div><div class="elec"><small>Electrodos</small><div class="es">${S.scanning?S.phase:sc?"Escaneo completo ✓":"Listos"}</div><button class="go" ${S.scanning||sc?"disabled":""} onclick="scan()">${S.scanning?"…":sc?"Hecho":"Escanear"}</button></div></section><section><div class="ban b${n}"><div class="big">${sc?SH[n]+" ":""}${st}</div></div>${rd}<div class="grid">${tiles}</div><div class="box det"><b>${i.n}</b><dl><dt>Por qué cambia</dt><dd>${i.why}</dd><dt>Rango normal</dt><dd>${i.g[0]}–${i.g[1]} ${i.u}</dd><dt>Guía</dt><dd>${i.guide}</dd><dt>Fuente</dt><dd>${i.src}</dd></dl></div></section><section class="mission-panel">${S.alert?`<div class="ban b2">${S.alert}</div>`:""}<div class="box"><span class="tag">${S.ev.h}</span><b>${S.ev.t}</b><br>${S.ev.x}</div>${S.done?`<div class="box">${S.msg}</div>`:""}<h2>Misiones</h2><div class="mlist">${mis}</div></section></div><div class="dock">${dock}</div>`;
 }
 
 intro();
