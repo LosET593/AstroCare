@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Edge AI - Hipersensibilidad</title>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 2rem;
+        }
+        h1 { color: #58a6ff; font-size: 1.8rem; margin-bottom: 0.5rem; }
+        #status { 
+            margin-bottom: 1.5rem; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            background: #21262d; 
+            border: 1px solid #30363d; 
+            font-family: monospace;
+        }
+        .video-container {
+            position: relative;
+            border: 2px solid #30363d;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.15);
+            background-color: #000;
+        }
+        video { display: block; }
+        canvas { position: absolute; top: 0; left: 0; }
+    </style>
+</head>
+<body>
+    <h1>Procesamiento Local: Detección Mejorada</h1>
+    <div id="status">Cargando motor SSD y ajustes de sensibilidad...</div>
+    
+    <div class="video-container">
+        <video id="video" width="720" height="560" autoplay muted></video>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const video = document.getElementById('video');
+            const statusDiv = document.getElementById('status');
+            const MODEL_URL = 'https://justadudewhohacks.github.io/face-api.js/models';
+
+            const traduccion = {
+                happy: 'Feliz', sad: 'Triste', angry: 'Enojado',
+                fearful: 'Estresado/Miedo', disgusted: 'Disgustado',
+                surprised: 'Asombrado', neutral: 'Neutral'
+            };
+
+            Promise.all([
+                faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
+                faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+                faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL)
+            ]).then(iniciarCamara).catch(err => console.error(err));
+
+            function iniciarCamara() {
+                statusDiv.innerText = "Inicializando hardware de video...";
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+                    .then(stream => {
+                        video.srcObject = stream;
+                        statusDiv.innerText = "Sistema en línea: Hipersensibilidad activada";
+                        statusDiv.style.color = "#3fb950";
+                        statusDiv.style.borderColor = "#3fb950";
+                    })
+                    .catch(err => console.error(err));
+            }
+
+            video.addEventListener('play', () => {
+                const canvas = faceapi.createCanvasFromMedia(video);
+                document.querySelector('.video-container').append(canvas);
+                const displaySize = { width: video.width, height: video.height };
+                faceapi.matchDimensions(canvas, displaySize);
+
+                const opcionesAltaSensibilidad = new faceapi.SsdMobilenetv1Options({ minConfidence: 0.2 });
+                const ctx = canvas.getContext('2d');
+
+                setInterval(async () => {
+                    const detecciones = await faceapi.detectAllFaces(video, opcionesAltaSensibilidad)
+                        .withFaceLandmarks()
+                        .withFaceExpressions();
+                    
+                    const deteccionesAjustadas = faceapi.resizeResults(detecciones, displaySize);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    faceapi.draw.drawDetections(canvas, deteccionesAjustadas);
+                    faceapi.draw.drawFaceLandmarks(canvas, deteccionesAjustadas); 
+
+                    deteccionesAjustadas.forEach(deteccion => {
+                        const emociones = deteccion.expressions;
+                        
+                        // HACKEO DE PESOS MATEMÁTICOS
+                        const emocionesHackeadas = {
+                            happy: emociones.happy,
+                            sad: emociones.sad * 4.0,         // Multiplicamos x4 la tristeza
+                            angry: emociones.angry,
+                            fearful: emociones.fearful,
+                            disgusted: emociones.disgusted,
+                            surprised: emociones.surprised * 4.0, // Multiplicamos x4 el asombro
+                            neutral: emociones.neutral * 0.15 // Aplastamos el Neutral para que casi no aparezca
+                        };
+
+                        // Encontrar la emoción ganadora con los nuevos pesos
+                        const emocionDominante = Object.keys(emocionesHackeadas).reduce((a, b) => emocionesHackeadas[a] > emocionesHackeadas[b] ? a : b);
+                        
+                        // Obtenemos el porcentaje original real de la emoción ganadora
+                        let porcentajeOriginal = Math.round(emociones[emocionDominante] * 100);
+                        
+                        // Como aplastamos el Neutral, a veces ganará Tristeza con un porcentaje bajo, 
+                        // pero no queremos que muestre 0%, así que aseguramos un mínimo visual.
+                        if (porcentajeOriginal < 1) porcentajeOriginal = 1; 
+
+                        const textoPrincipal = traduccion[emocionDominante] || emocionDominante;
+
+                        // Coordenadas de la cara
+                        const caja = deteccion.detection.box;
+                        const x = caja.x;
+                        const y = caja.y; 
+
+                        // Diseño Visual UI
+                        ctx.fillStyle = 'rgba(13, 17, 23, 0.9)';
+                        ctx.fillRect(x, y - 60, 160, 55);
+                        
+                        // Emoción principal
+                        ctx.font = 'bold 24px Arial';
+                        ctx.fillStyle = '#58a6ff'; 
+                        ctx.fillText(textoPrincipal, x + 10, y - 35);
+                        
+                        // Porcentaje pequeño
+                        ctx.font = '13px Arial';
+                        ctx.fillStyle = '#8b949e'; 
+                        ctx.fillText(`Certeza: ${porcentajeOriginal}%`, x + 10, y - 15);
+                    });
+                }, 100); 
+            });
+        };
+    </script>
+</body>
+</html>
