@@ -104,6 +104,7 @@ def serialize_measurement(row):
 def home():
     return render_template("dashboard.html")
 
+
 @app.get("/api/dashboard")
 def dashboard_data():
     with get_connection() as connection:
@@ -132,6 +133,7 @@ def dashboard_data():
                 for row in reversed(rows)
             ]
         })
+
 
 @app.get("/api/status")
 def status():
