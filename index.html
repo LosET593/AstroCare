@@ -6,9 +6,9 @@
 <meta name="description" content="Juego de monitoreo de salud de astronautas. NASA Space Apps Challenge 2026.">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#070f17;--pn:#0f2233;--glass:rgba(16,38,56,.78);--tx:#E8F1F5;--mu:#8FA9B6;--ln:rgba(124,196,232,.2);--g:#4CD0A0;--y:#F2B63C;--r:#FF6B6B;--ac:#7CC4E8;--gb:rgba(76,208,160,.13);--yb:rgba(242,182,60,.13);--rb:rgba(255,107,107,.15)}
+:root{color-scheme:dark;--bg:#070f17;--pn:#0f2233;--glass:rgba(10,24,38,.62);--tx:#E8F1F5;--mu:#8FA9B6;--ln:rgba(124,196,232,.25);--g:#4CD0A0;--y:#F2B63C;--r:#FF6B6B;--ac:#7CC4E8;--gb:rgba(76,208,160,.18);--yb:rgba(242,182,60,.18);--rb:rgba(255,107,107,.2)}
 *{box-sizing:border-box}
-body{margin:0;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);min-height:100vh;color:var(--tx);font:16px/1.5 Barlow,system-ui,sans-serif;background:radial-gradient(900px 500px at 85% -5%,rgba(40,90,140,.38),transparent 70%),radial-gradient(800px 500px at 5% 105%,rgba(170,70,40,.26),transparent 70%),radial-gradient(1.2px 1.2px at 12% 18%,#fff9,transparent),radial-gradient(1px 1px at 34% 72%,#fff7,transparent),radial-gradient(1.4px 1.4px at 58% 30%,#fffa,transparent),radial-gradient(1px 1px at 79% 62%,#fff8,transparent),radial-gradient(1.2px 1.2px at 91% 14%,#fff9,transparent),radial-gradient(1px 1px at 46% 90%,#fff6,transparent),var(--bg);background-size:100% 100%,100% 100%,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px,360px 360px;overflow-x:hidden}
+body{margin:0;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);min-height:100vh;color:var(--tx);font:16px/1.5 Barlow,system-ui,sans-serif;background:linear-gradient(rgba(7,15,23,0.55),rgba(7,15,23,0.75)),url('ORBITAL.jpg') no-repeat center center fixed;background-size:cover;overflow-x:hidden}
 #app{max-width:980px;margin:0 auto;padding:18px 16px 28px;position:relative}
 h1,h2,.nm,.big{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:700}
 h1{font-size:clamp(2.3rem,7vw,3.3rem);line-height:1.02;margin:.1em 0 .15em;letter-spacing:.02em;background:linear-gradient(90deg,#fff,var(--ac) 55%,var(--y));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -16,21 +16,21 @@ h2{font-size:1.25rem;margin:.2em 0 .3em;letter-spacing:.03em}p{margin:.4em 0;max
 .eyebrow{font:600 .82rem "Barlow Condensed",sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--ac)}
 .orb{float:right;width:112px;height:112px;margin:0 0 6px 12px}
 .bar{height:8px;background:var(--ln);border-radius:4px;overflow:hidden;width:110px;display:inline-block;vertical-align:middle}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--ac))}
-.ban{padding:14px 18px;border:1px solid var(--bc);border-left:6px solid var(--bc);border-radius:14px;margin-bottom:10px;box-shadow:0 0 28px -10px var(--bc)}.ban .big{font-size:1.8rem;line-height:1.1;letter-spacing:.02em}
-.b0{--bc:var(--g);background:linear-gradient(90deg,var(--gb),transparent)}.b1{--bc:var(--y);background:linear-gradient(90deg,var(--yb),transparent)}.b2{--bc:var(--r);background:linear-gradient(90deg,var(--rb),transparent)}.b3{--bc:var(--mu);background:var(--glass)}
+.ban{padding:14px 18px;border:1px solid var(--bc);border-left:6px solid var(--bc);border-radius:14px;margin-bottom:10px;box-shadow:0 0 28px -10px var(--bc);backdrop-filter:blur(6px)}.ban .big{font-size:1.8rem;line-height:1.1;letter-spacing:.02em}
+.b0{--bc:var(--g);background:linear-gradient(90deg,var(--gb),rgba(10,24,38,.7))}.b1{--bc:var(--y);background:linear-gradient(90deg,var(--yb),rgba(10,24,38,.7))}.b2{--bc:var(--r);background:linear-gradient(90deg,var(--rb),rgba(10,24,38,.7))}.b3{--bc:var(--mu);background:var(--glass)}
 .box{background:var(--glass);border:1px solid var(--ln);border-radius:14px;padding:12px 16px;margin-bottom:10px;backdrop-filter:blur(8px)}
 .box dl{margin:.3em 0;display:grid;grid-template-columns:auto 1fr;gap:3px 14px}.box dt{font-weight:600;color:var(--ac)}.box dd{margin:0}
-.tag{display:inline-block;font:600 .74rem "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:2px 10px;border-radius:99px;background:rgba(124,196,232,.14);color:var(--ac);margin-right:8px}
+.tag{display:inline-block;font:600 .74rem "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:2px 10px;border-radius:99px;background:rgba(124,196,232,.18);color:var(--ac);margin-right:8px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .c0{--c:var(--g)}.c1{--c:var(--y)}.c2{--c:var(--r)}.c3{--c:var(--mu)}
-.t{all:unset;box-sizing:border-box;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-top:3px solid var(--c);border-radius:14px;padding:9px 14px;display:grid;grid-template-columns:1fr auto;gap:3px 8px;transition:transform .15s,box-shadow .15s}
+.t{all:unset;box-sizing:border-box;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-top:3px solid var(--c);border-radius:14px;padding:9px 14px;display:grid;grid-template-columns:1fr auto;gap:3px 8px;transition:transform .15s,box-shadow .15s;backdrop-filter:blur(8px)}
 .t:hover{transform:translateY(-2px);box-shadow:0 8px 22px -10px var(--c)}
 .t.on{border-left-color:var(--ac);border-right-color:var(--ac);border-bottom-color:var(--ac);box-shadow:0 0 0 1px var(--ac),0 0 24px -8px var(--ac)}
 .t svg{grid-column:1/-1;width:100%;height:36px;color:var(--c)}
 button:focus-visible,.t:focus-visible,.hs:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 .nm{font-size:1.1rem;letter-spacing:.02em}.vl{font:700 2.1rem/1 "Barlow Condensed",sans-serif;text-align:right;color:var(--c);text-shadow:0 0 14px var(--c)}.vl small{font:400 .8rem Barlow;color:var(--mu);margin-left:3px;text-shadow:none}
-.st{justify-self:start;font-weight:600;font-size:.8rem;padding:1px 10px;border-radius:99px;border:1px solid var(--c);color:var(--c);background:rgba(255,255,255,.04)}
-.a{font:600 1rem Barlow,sans-serif;text-align:left;cursor:pointer;background:var(--glass);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:10px 14px;transition:box-shadow .15s,border-color .15s}
+.st{justify-self:start;font-weight:600;font-size:.8rem;padding:1px 10px;border-radius:99px;border:1px solid var(--c);color:var(--c);background:rgba(255,255,255,.06)}
+.a{font:600 1rem Barlow,sans-serif;text-align:left;cursor:pointer;background:var(--glass);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:10px 14px;transition:box-shadow .15s,border-color .15s;backdrop-filter:blur(8px)}
 .a:hover:not(:disabled){border-color:var(--ac);box-shadow:0 0 18px -8px var(--ac)}.a:disabled{opacity:.4;cursor:not-allowed}.a.sel{border-color:var(--g);background:var(--gb);box-shadow:0 0 18px -8px var(--g)}.a span{display:block;font-weight:400;font-size:.85rem;color:var(--mu)}
 .go{font:700 1.05rem Barlow,sans-serif;letter-spacing:.02em;background:linear-gradient(135deg,var(--ac),#4aa0d4);color:#06141f;border:0;border-radius:12px;padding:11px 24px;cursor:pointer;margin:8px 0;box-shadow:0 6px 22px -6px var(--ac);position:relative;z-index:2}.go:hover:not(:disabled){filter:brightness(1.1)}.go:disabled{opacity:.6}
 .fig{width:100%;max-width:230px;margin:0 auto;display:block}.hs{cursor:pointer;color:var(--c)}
@@ -45,30 +45,27 @@ button:focus-visible,.t:focus-visible,.hs:focus-visible{outline:3px solid var(--
 .rule-title{margin-top:1rem!important;font-weight:700;color:var(--ac)}
 .charge-rule{padding:10px 14px!important;border-left:3px solid var(--y);border-radius:0 8px 8px 0;background:var(--yb);max-width:100%}
 
-/* Estilos para alinear el contenido de bienvenida a la izquierda y mostrar la estación de fondo */
 .intro-container{max-width:620px;margin:0;position:relative;z-index:1}
 .intro-card{width:100%;margin-top:14px;position:relative;overflow:hidden}
-.station-bg{position:fixed;right:0;bottom:0;width:min(720px,65vw);height:auto;pointer-events:none;z-index:0;opacity:.9}
-@media(max-width:900px){.station-bg{width:450px;right:-60px;bottom:0;opacity:.4}}
 
 .hud{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
 .hud .it{display:flex;align-items:center;gap:8px;white-space:nowrap}.hud small{color:var(--mu);text-transform:uppercase;letter-spacing:.12em;font:600 .72rem "Barlow Condensed",sans-serif}.hud b{font:700 1.2rem "Barlow Condensed",sans-serif}
 .bar.fat i{background:linear-gradient(90deg,var(--y),var(--r))}
 .cols{display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1.5fr) minmax(240px,1fr);gap:10px;min-height:0;align-items:start}.cols>section{min-height:0;overflow:visible;padding:2px}
-.figcol{display:flex;flex-direction:column;gap:8px;min-height:0}.figbox{flex:none;aspect-ratio:7/10;min-width:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(110% 65% at 50% 10%,rgba(52,126,161,.42),transparent 62%),linear-gradient(180deg,rgba(12,45,67,.96),rgba(5,19,32,.98));border:1px solid var(--ln);border-radius:14px;padding:6px;overflow:hidden}
+.figcol{display:flex;flex-direction:column;gap:8px;min-height:0}.figbox{flex:none;aspect-ratio:7/10;min-width:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(110% 65% at 50% 10%,rgba(52,126,161,.42),transparent 62%),linear-gradient(180deg,rgba(12,45,67,.85),rgba(5,19,32,.9));border:1px solid var(--ln);border-radius:14px;padding:6px;overflow:hidden;backdrop-filter:blur(6px)}
 .dash .fig{width:auto;max-width:108%;height:100%;max-height:100%;margin:0;filter:drop-shadow(0 8px 12px rgba(0,0,0,.32))}
-.elec{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;width:auto;background:rgba(10,28,42,.9);border:1px solid rgba(124,196,232,.55);border-radius:14px;padding:8px 10px;text-align:left;box-shadow:0 10px 26px rgba(0,0,0,.28);backdrop-filter:blur(8px)}
+.elec{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;width:auto;background:rgba(10,28,42,.85);border:1px solid rgba(124,196,232,.55);border-radius:14px;padding:8px 10px;text-align:left;box-shadow:0 10px 26px rgba(0,0,0,.28);backdrop-filter:blur(8px)}
 .elec small{color:var(--ac);text-transform:uppercase;letter-spacing:.14em;font:600 .72rem "Barlow Condensed",sans-serif}.elec .es{font-size:.8rem;min-height:0;margin:0}.elec .go{width:auto;margin:0;padding:8px 14px}.elec p{display:none}
 .mission-panel{scrollbar-width:none;-ms-overflow-style:none}.mission-panel::-webkit-scrollbar{display:none}
 .dash .ban{padding:7px 12px;margin-bottom:8px}.dash .ban .big{font-size:1.3rem}.dash .box{padding:8px 12px;margin-bottom:8px}.dash .det{font-size:.82rem}.dash h2{font-size:1.05rem;margin:4px 0}
 .dash .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:8px}.dash .t{padding:6px 10px}.dash .vl{font-size:1.6rem}.dash .nm{font-size:.95rem}.dash .t svg{height:24px}
-.ms{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-radius:12px;padding:7px 12px;margin-bottom:7px}
-.ms b{display:block;font-size:.95rem}.ms .mu{display:block;font-size:.78rem}.ms.on{border-color:var(--ac);box-shadow:0 0 16px -8px var(--ac)}.ms.ok{border-color:var(--g);opacity:.75}.ms.ko{border-color:var(--r);opacity:.6}
+.ms{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;background:var(--glass);border:1px solid var(--ln);border-radius:12px;padding:7px 12px;margin-bottom:7px;backdrop-filter:blur(8px)}
+.ms b{display:block;font-size:.95rem}.ms .mu{display:block;font-size:.78rem}.ms.on{border-color:var(--ac);box-shadow:0 0 16px -8px var(--ac)}.ms.ok{border-color:var(--g);opacity:.85}.ms.ko{border-color:var(--r);opacity:.7}
 .pb{display:block;height:5px;background:var(--ln);border-radius:3px;overflow:hidden;margin-top:5px}.pb i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--g))}
 .dock{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:end;padding:8px 12px;background:var(--glass);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px)}
 .dg small{display:block;color:var(--mu);text-transform:uppercase;letter-spacing:.1em;font:600 .72rem "Barlow Condensed",sans-serif;margin-bottom:3px}.row{display:flex;flex-wrap:wrap;gap:8px}
 .dock .a{padding:6px 12px;font-size:.9rem}.dock .a span{font-size:.75rem}.dock .go{margin:0;padding:9px 22px}
-@media(max-width:900px){#app.dash{height:auto;min-height:100vh;display:block}.hud{position:sticky;top:0;z-index:5;background:rgba(10,24,36,.92)}.cols{display:block;margin:10px 0}.cols>section{margin-bottom:10px;overflow:visible}.figcol{display:block;min-height:0}.figbox{display:block;min-height:440px}.elec{margin-top:8px;gap:8px}.elec .go{padding:8px 12px}.dock{grid-template-columns:1fr;position:sticky;bottom:0;z-index:5;background:rgba(10,24,36,.94)}.dash .fig{width:108%;max-width:108%;height:auto;max-height:60vh;margin-left:-4%}}
+@media(max-width:900px){#app.dash{height:auto;min-height:100vh;display:block}.hud{position:sticky;top:0;z-index:5;background:rgba(10,24,36,.88);backdrop-filter:blur(8px)}.cols{display:block;margin:10px 0}.cols>section{margin-bottom:10px;overflow:visible}.figcol{display:block;min-height:0}.figbox{display:block;min-height:440px}.elec{margin-top:8px;gap:8px}.elec .go{padding:8px 12px}.dock{grid-template-columns:1fr;position:sticky;bottom:0;z-index:5;background:rgba(10,24,36,.92);backdrop-filter:blur(8px)}.dash .fig{width:108%;max-width:108%;height:auto;max-height:60vh;margin-left:-4%}}
 </style></head><body><div id="app"></div>
 <script>
 const $=s=>document.querySelector(s);
@@ -257,7 +254,7 @@ function act(a){
   }
 
   S.score+=d;S.health=cl(S.health+h,0,100);
-  S.msg=`<b>${d>=0?"+":""}${d} puntos${h?" salud "+h:""}.</b> ${m} Dormirás ${PL[S.plan].h} h esta noche.`;
+  S.msg=`<b>${d>=0?"+":""}${d} puntos${h?" · salud "+h:""}.</b> ${m} Dormirás ${PL[S.plan].h} h esta noche.`;
   S.done=true;render();
 }
 
@@ -274,69 +271,6 @@ function fig(L,sc){
 function intro(){
   $("#app").className="";
   $("#app").innerHTML=`
-  <svg class="station-bg" viewBox="0 0 600 440" aria-hidden="true">
-    <defs>
-      <radialGradient id="marsAtm" cx="72%" cy="78%" r="55%">
-        <stop offset="0%" stop-color="#f28d52" stop-opacity=".45"/>
-        <stop offset="55%" stop-color="#b84a27" stop-opacity=".28"/>
-        <stop offset="100%" stop-color="#070f17" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="marsBody" cx="62%" cy="68%" r="52%">
-        <stop offset="0%" stop-color="#e38754"/>
-        <stop offset="55%" stop-color="#9e3e22"/>
-        <stop offset="100%" stop-color="#2a0e08"/>
-      </radialGradient>
-      <linearGradient id="solarPanel" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#1b4d7a"/>
-        <stop offset="50%" stop-color="#2e7ab8"/>
-        <stop offset="100%" stop-color="#133352"/>
-      </linearGradient>
-      <linearGradient id="hull" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#d8e6f0"/>
-        <stop offset="55%" stop-color="#7f99ad"/>
-        <stop offset="100%" stop-color="#354857"/>
-      </linearGradient>
-    </defs>
-    <!-- Planeta Marte y atmósfera de fondo -->
-    <circle cx="470" cy="360" r="245" fill="url(#marsAtm)"/>
-    <circle cx="470" cy="360" r="205" fill="url(#marsBody)" opacity=".85"/>
-    <!-- Estación Espacial en órbita -->
-    <g transform="translate(340, 225) rotate(-24)">
-      <!-- Eje estructural (Truss) -->
-      <rect x="-210" y="-3" width="420" height="6" fill="#5e768a" rx="2"/>
-      <!-- Paneles solares izquierdos -->
-      <g transform="translate(-165, 0)">
-        <rect x="-32" y="-85" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
-        <rect x="6" y="-85" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
-        <rect x="-32" y="9" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
-        <rect x="6" y="9" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
-        <line x1="-19" y1="-85" x2="-19" y2="-9" stroke="#7CC4E8" stroke-opacity=".35"/>
-        <line x1="19" y1="-85" x2="19" y2="-9" stroke="#7CC4E8" stroke-opacity=".35"/>
-        <line x1="-19" y1="9" x2="-19" y2="85" stroke="#7CC4E8" stroke-opacity=".35"/>
-        <line x1="19" y1="9" x2="19" y2="85" stroke="#7CC4E8" stroke-opacity=".35"/>
-      </g>
-      <!-- Paneles solares derechos -->
-      <g transform="translate(165, 0)">
-        <rect x="-32" y="-85" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
-        <rect x="6" y="-85" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
-        <rect x="-32" y="9" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
-        <rect x="6" y="9" width="26" height="76" fill="url(#solarPanel)" stroke="#7CC4E8" stroke-width="1"/>
-        <line x1="-19" y1="-85" x2="-19" y2="-9" stroke="#7CC4E8" stroke-opacity=".35"/>
-        <line x1="19" y1="-85" x2="19" y2="-9" stroke="#7CC4E8" stroke-opacity=".35"/>
-        <line x1="-19" y1="9" x2="-19" y2="85" stroke="#7CC4E8" stroke-opacity=".35"/>
-        <line x1="19" y1="9" x2="19" y2="85" stroke="#7CC4E8" stroke-opacity=".35"/>
-      </g>
-      <!-- Módulos habitacionales centrales -->
-      <rect x="-58" y="-12" width="116" height="24" rx="8" fill="url(#hull)"/>
-      <rect x="-13" y="-44" width="26" height="88" rx="9" fill="url(#hull)"/>
-      <!-- Nodo central y cúpula -->
-      <circle cx="0" cy="0" r="16" fill="#9fb6c7" stroke="#354857" stroke-width="2"/>
-      <circle cx="0" cy="0" r="7" fill="#7CC4E8" opacity=".8"/>
-      <!-- Luces de baliza -->
-      <circle cx="-210" cy="0" r="2.5" fill="#FF6B6B"/>
-      <circle cx="210" cy="0" r="2.5" fill="#4CD0A0"/>
-    </g>
-  </svg>
   <div class="intro-container">
     <svg class="orb" viewBox="0 0 120 120" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".35"><stop offset="0" stop-color="#f0a070"/><stop offset="1" stop-color="#8a3a22"/></radialGradient></defs><ellipse cx="60" cy="60" rx="56" ry="20" fill="none" stroke="#7CC4E8" stroke-opacity=".5" transform="rotate(-20 60 60)"/><circle cx="60" cy="60" r="26" fill="url(#mg)"/><circle cx="7" cy="79" r="4" fill="#E8F1F5"/></svg>
     <div class="eyebrow">NASA Space Apps Challenge 2026 · Reto 04</div>
@@ -389,7 +323,7 @@ function render(){
     if(!R)rd=`<div class="box"><b>Radar predictivo:</b> faltan lecturas (${S.day}/4).</div>`;
     else{
       const lv=R.al?2:R.at?1:0;
-      rd=`<div class="ban b${lv}"><b>Radar:</b> ${R.al?`alerta en ~${R.al} days (${R.wa.join(", ")})`:R.at?`atención en ~${R.at} días (${R.wt.join(", ")})`:"sin cambios de semáforo previstos en 7 días"}. <small class="mu">Puntos = proyección.</small></div>`;
+      rd=`<div class="ban b${lv}"><b>Radar:</b> ${R.al?`alerta en ~${R.al} días (${R.wa.join(", ")})`:R.at?`atención en ~${R.at} días (${R.wt.join(", ")})`:"sin cambios de semáforo previstos en 7 días"}. <small class="mu">Puntos = proyección.</small></div>`;
     }
   }
 
