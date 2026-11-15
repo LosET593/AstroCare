@@ -114,17 +114,22 @@ def dashboard_data():
             LIMIT 1
         """).fetchone()
 
-        rows = connection.execute("""
-            SELECT *
-            FROM telemetry
-            ORDER BY id DESC
-            LIMIT 60
-        """).fetchall()
+        if latest:
+            rows = connection.execute("""
+                SELECT *
+                FROM telemetry
+                WHERE device_id = ?
+                ORDER BY id DESC
+                LIMIT 60
+            """, (latest["device_id"],)).fetchall()
+        else:
+            rows = []
 
         return jsonify({
             "latest": serialize_measurement(latest) if latest else None,
             "history": [
-                serialize_measurement(row) for row in reversed(rows)
+                serialize_measurement(row)
+                for row in reversed(rows)
             ]
         })
 
