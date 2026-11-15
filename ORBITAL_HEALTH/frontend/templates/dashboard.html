@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORBITAL HEALTH | Mission Control</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">O</div>
+            <div>
+                <h2>ORBITAL</h2>
+                <span>HEALTH SYSTEM</span>
+            </div>
+        </div>
+
+        <div class="nav-label">MISSION CONTROL</div>
+
+        <nav>
+            <a class="nav-item active" href="#overview">Dashboard</a>
+            <a class="nav-item" href="#biometrics">Biometrics</a>
+            <a class="nav-item" href="#analytics">Analytics</a>
+            <a class="nav-item" href="#alerts">Alerts</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <span class="online-dot"></span>
+            <span>LOCAL SERVER</span>
+            <small id="connection-state">Connecting...</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="mode-toolbar">
+            <div>
+                <span class="eyebrow">OPERATIONAL ENVIRONMENT</span>
+                <strong id="mode-label">IN-SHIP · CABIN MONITORING</strong>
+            </div>
+            <div class="mode-actions">
+                <button type="button" class="mode-button active" data-mode-choice="inship">IN-SHIP</button>
+                <button type="button" class="mode-button" data-mode-choice="eva">EVA</button>
+            </div>
+        </div>
+
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">NASA SPACE HEALTH MONITORING</span>
+                <h1>Mission Overview</h1>
+            </div>
+
+            <div class="mission-info">
+                <span>MISSION 142</span>
+                <strong id="mission-clock">--:--:--</strong>
+            </div>
+        </header>
+
+        <section class="mission-banner" id="overview">
+            <div>
+                <span class="eyebrow">CREW HEALTH INTELLIGENCE</span>
+                <h2>Human Health Monitoring System</h2>
+                <p>Real-time biometric telemetry and health intelligence.</p>
+            </div>
+
+            <div class="mission-status">
+                <span class="status-indicator" id="overall-dot"></span>
+                <div>
+                    <strong id="overall-status">NO DATA</strong>
+                    <small>OVERALL HEALTH STATUS</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-heading">
+            <div>
+                <span class="eyebrow">LIVE TELEMETRY</span>
+                <h2>Biometric indicators</h2>
+            </div>
+            <span class="live-label">● LIVE</span>
+        </section>
+
+        <section class="metrics-grid" id="biometrics">
+
+            <article class="metric-card">
+                <span class="metric-name">HEART RATE</span>
+                <div class="metric-value">
+                    <strong id="heart-rate">--</strong>
+                    <span>bpm</span>
+                </div>
+                <div class="metric-status" id="heart-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">OXYGEN SATURATION</span>
+                <div class="metric-value">
+                    <strong id="spo2">--</strong>
+                    <span>%</span>
+                </div>
+                <div class="metric-status" id="spo2-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">BODY TEMPERATURE</span>
+                <div class="metric-value">
+                    <strong id="temperature">--</strong>
+                    <span>°C</span>
+                </div>
+                <div class="metric-status" id="temperature-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">SLEEP DURATION</span>
+                <div class="metric-value">
+                    <strong id="sleep">--</strong>
+                    <span>hrs</span>
+                </div>
+                <div class="metric-status" id="sleep-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">BLOOD PRESSURE</span>
+                <div class="metric-value">
+                    <strong id="pressure">--/--</strong>
+                    <span>mmHg</span>
+                </div>
+                <div class="metric-status" id="pressure-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">BLOOD GLUCOSE</span>
+                <div class="metric-value">
+                    <strong id="glucose">--</strong>
+                    <span>mg/dL</span>
+                </div>
+                <div class="metric-status" id="glucose-status">UNAVAILABLE</div>
+            </article>
+
+            <article class="metric-card">
+                <span class="metric-name">MOOD SCORE</span>
+                <div class="metric-value">
+                    <strong id="mood">--</strong>
+                    <span>/10</span>
+                </div>
+                <div class="metric-status" id="mood-status">UNAVAILABLE</div>
+            </article>
+
+        </section>
+
+        <section class="eva-console" id="eva-console" aria-label="EVA simplified interface">
+            <div class="eva-heading">
+                <div>
+                    <span class="eyebrow">EXTRAVEHICULAR ACTIVITY</span>
+                    <h2>EVA Operations</h2>
+                    <p>Prioritized information for a simulated suit environment.</p>
+                </div>
+                <span class="eva-state" id="eva-state">SIMULATION MODE</span>
+            </div>
+            <div class="eva-metrics">
+                <article><span>HEART RATE</span><strong id="eva-heart-rate">--</strong><small>bpm</small></article>
+                <article><span>OXYGEN SATURATION</span><strong id="eva-spo2">--</strong><small>%</small></article>
+                <article><span>BODY TEMPERATURE</span><strong id="eva-temperature">--</strong><small>°C</small></article>
+            </div>
+            <div class="eva-alert" id="eva-alert" role="status">Waiting for simulated telemetry.</div>
+            <div class="eva-actions">
+                <button type="button" id="eva-speak" class="secondary-button">Read status aloud</button>
+                <span id="voice-state">Device speech output: checking availability</span>
+            </div>
+        </section>
+
+        <section class="wellbeing-section" id="wellbeing">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">CREW WELLBEING</span>
+                    <h2>Psychological support assistant</h2>
+                </div>
+                <span class="local-label">LOCAL GUIDED MODE</span>
+            </div>
+            <div class="wellbeing-grid">
+                <article class="panel checkin-panel">
+                    <h3>Daily check-in</h3>
+                    <label for="mood-input">How is your mood? (1–10)</label>
+                    <input id="mood-input" type="range" min="1" max="10" value="7">
+                    <output id="mood-output">7 / 10</output>
+                    <label for="stress-input">Stress level (1–10)</label>
+                    <input id="stress-input" type="range" min="1" max="10" value="3">
+                    <output id="stress-output">3 / 10</output>
+                    <label for="wellbeing-note">Optional note</label>
+                    <textarea id="wellbeing-note" maxlength="500" rows="3" placeholder="How are you feeling today?"></textarea>
+                    <button type="button" id="save-checkin" class="primary-button">Save check-in</button>
+                    <p id="checkin-feedback" class="form-feedback" aria-live="polite"></p>
+                </article>
+                <article class="panel chat-panel">
+                    <h3>Talk with the assistant</h3>
+                    <div id="chat-history" class="chat-history" aria-live="polite">
+                        <p class="chat-message assistant">I can help you reflect on stress, rest, and emotional wellbeing. What is on your mind?</p>
+                    </div>
+                    <form id="wellbeing-form">
+                        <label class="sr-only" for="wellbeing-message">Your message</label>
+                        <textarea id="wellbeing-message" maxlength="1000" rows="2" placeholder="Write what you are experiencing..." required></textarea>
+                        <div class="chat-actions">
+                            <button type="submit" class="primary-button">Send</button>
+                            <button type="button" id="speak-last" class="secondary-button">Speak last response</button>
+                        </div>
+                    </form>
+                    <p class="disclaimer">Experimental support only. Not a diagnostic tool or substitute for a qualified professional or mission medical protocol.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="analytics-section" id="analytics">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">BIOMETRIC ANALYSIS</span>
+                    <h2>Telemetry history</h2>
+                </div>
+            </div>
+
+            <article class="chart-card">
+                <div class="chart-heading">
+                    <h3>Heart rate evolution</h3>
+                    <span>bpm</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="heart-chart"></canvas>
+                </div>
+            </article>
+
+            <article class="chart-card">
+                <div class="chart-heading">
+                    <h3>Oxygen saturation</h3>
+                    <span>%</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="spo2-chart"></canvas>
+                </div>
+            </article>
+
+            <article class="chart-card">
+                <div class="chart-heading">
+                    <h3>Body temperature</h3>
+                    <span>°C</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="temperature-chart"></canvas>
+                </div>
+            </article>
+        </section>
+
+        <section class="bottom-grid">
+
+            <article class="panel" id="alerts">
+                <span class="eyebrow">HEALTH INTELLIGENCE</span>
+                <h2>System alerts</h2>
+                <div id="alert-list">
+                    <p class="empty-state">Waiting for telemetry...</p>
+                </div>
+            </article>
+
+            <article class="panel">
+                <span class="eyebrow">DEVICE INFORMATION</span>
+                <h2>ESP32 connection</h2>
+
+                <div class="device-row">
+                    <span>Device ID</span>
+                    <strong id="device-id">NOT CONNECTED</strong>
+                </div>
+
+                <div class="device-row">
+                    <span>Connection</span>
+                    <strong id="device-state">OFFLINE</strong>
+                </div>
+
+                <div class="device-row">
+                    <span>Last measurement</span>
+                    <strong id="last-update">--</strong>
+                </div>
+
+                <div class="device-row">
+                    <span>Total measurements</span>
+                    <strong id="total-measurements">0</strong>
+                </div>
+            </article>
+
+        </section>
+
+        <footer>
+            ORBITAL HEALTH · CREW HEALTH INTELLIGENCE SYSTEM
+            <span>Experimental monitoring platform · Not a medical device</span>
+        </footer>
+
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/orbital-modes.js') }}" defer></script>
+
+</body>
+</html>
